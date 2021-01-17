@@ -1,10 +1,12 @@
 import Head from 'next/head'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
+import styles from '../styles/layout.module.scss'
+import utilStyles from '../styles/utils.module.scss'
 import Link from 'next/link'
+import Header from './header.js'
+import Footer from './footer.js'
 
 const name = 'Tom Brooks'
-export const siteTitle = 'Next.js Sample Website'
+export const siteTitle = 'Tom Brooks | Personal Website'
 
 export default function Layout({ children, home }) {
   return (
@@ -13,7 +15,7 @@ export default function Layout({ children, home }) {
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="Learn how to build a personal website using Next.js"
+          content="Tom Brooks | Personal Website"
         />
         <meta
           property="og:image"
@@ -24,6 +26,8 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
+      <Header></Header>
+      <div className={styles.innerContainer}>
       <header className={styles.header}>
         {home ? (
           <>
@@ -61,6 +65,8 @@ export default function Layout({ children, home }) {
           </Link>
         </div>
       )}
+      </div>
+      <Footer></Footer>
     </div>
   )
 }
