@@ -3,6 +3,7 @@ import styles from '../styles/layout.module.scss'
 import utilStyles from '../styles/utils.module.scss'
 import Link from 'next/link'
 import Header from './header.js'
+import AnimatedTitle from './pageTitle.js'
 import Footer from './footer.js'
 
 const name = 'Tom Brooks'
@@ -19,14 +20,13 @@ export default function Layout({ children, home }) {
         />
         <meta
           property="og:image"
-          content={`https://og-image.now.sh/${encodeURI(
-            siteTitle
-          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
+          content="/favicon.ico"
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Header></Header>
+      <AnimatedTitle></AnimatedTitle>
       <div className={styles.innerContainer}>
       <header className={styles.header}>
         {home ? (

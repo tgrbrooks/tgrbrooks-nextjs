@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "animejs": "^3.2.1",
     "bootstrap": "^4.5.3",
     "date-fns": "^2.16.1",
     "gray-matter": "^4.0.2",
@@ -15,6 +16,7 @@
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",
     "react": "16.13.1",
+    "react-anime": "^3.0.3",
     "react-bootstrap": "^1.4.3",
     "react-dom": "16.13.1",
     "remark": "^13.0.0",
