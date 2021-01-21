@@ -26,7 +26,7 @@ export default function Layout({ children, home }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Header></Header>
-      <AnimatedTitle></AnimatedTitle>
+      <AnimatedTitle title="World" type={1}></AnimatedTitle>
       <div className={styles.innerContainer}>
       <header className={styles.header}>
         {home ? (
