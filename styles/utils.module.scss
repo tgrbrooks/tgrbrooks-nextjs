@@ -82,3 +82,15 @@
   border-width: 2px;
   background-color: #343a40;
 }
+
+@include media-query($on-palm) {
+  .staggerVisualizer {
+    width: 300px;
+    height: 90px;
+  }
+  .staggerVisualizerDiv {
+    width: 6px;
+    height: 6px;
+    border-width: 1px;
+  }
+}

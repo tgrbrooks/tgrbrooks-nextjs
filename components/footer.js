@@ -31,7 +31,7 @@ export default function Footer() {
                     </div>
 
                     <div className={[styles.footerCol, styles.footerCol3].join(' ')}>
-                        <p>A place for storing projects, wiki's, ideas and other useful things.</p>
+                        <p>A place for storing projects, wiki's, ideas and other not so useful things.</p>
                     </div>
                 </div>
 

@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Layout, { siteTitle } from '../components/layout'
+import { siteTitle, name } from '../components/layout'
+import PageLayout from '../components/pageLayout'
 import utilStyles from '../styles/utils.module.scss'
+import styles from '../styles/layout.module.scss'
 import { getSortedPostsData } from '../lib/posts'
 import Date from '../components/date'
 
@@ -37,15 +39,25 @@ export async function getStaticProps() {
 
 export default function Home ({ allPostsData }) {
   return (
-    <Layout home>
+    <PageLayout home title="Hello!" type={1}>
       <Head>
         <title>{siteTitle}</title>
       </Head>
+      <header className={styles.header}>
+          <>
+            <img
+              src="/images/profile.jpg"
+              className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
+              alt={name}
+            />
+            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+          </>
+      </header>
       <section className={utilStyles.headingMd}>
-        <p>Hello World!</p>
+        <p>Welcome to my website!</p>
         <p>
-          (This is a sample website - you’ll be building a site like this on{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
+          This is mostly just a space for me to try to keep all of my thoughts in one place.
+          It's also where I experiment with new Javascript libraries and tools, so there's a good chance some parts of the site might be broken.
         </p>
       </section>
       <Jumbotron>
@@ -73,6 +85,6 @@ export default function Home ({ allPostsData }) {
           ))}
         </ul>
       </section>
-    </Layout>
+    </PageLayout>
   )
 }

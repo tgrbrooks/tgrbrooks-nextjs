@@ -58,7 +58,7 @@ class AnimatedTitle extends Component {
             loop: false,
             autoplay: true
         });
-        if (props.type === 1) {
+        if (this.props.type === 1) {
             this.timeline.add({
                 rotate: 0,
                 scaleX: 2.5,
@@ -75,20 +75,20 @@ class AnimatedTitle extends Component {
         }
         if (this.props.type === 2) {
             // Make smaller and rotate at same time
-            startAnimation.add({
+            this.timeline.add({
                 scaleX: .25,
                 scaleY: .25,
                 rotate: anime.stagger([180, 0], { grid: grid, from: 'center' }),
                 delay: anime.stagger(20, { from: 'center' })
             })
         }
-        if (props.type === 3) {
+        if (this.props.type === 3) {
             // Change the squares to circles
-            startAnimation.add({
+            this.timeline.add({
                 borderRadius: ['0%', '50%']
             })
             // Make a wave
-            startAnimation.add({
+            this.timeline.add({
                 scale: [
                     { value: 2, easing: 'easeInOutQuad', duration: 500 },
                     { value: .1, easing: 'easeOutSine', duration: 500 }
@@ -98,14 +98,14 @@ class AnimatedTitle extends Component {
         }
         if (this.props.type === 4) {
             // Lift up the squares
-            startAnimation.add({
+            this.timeline.add({
                 translateY: -50,
                 scaleX: .5,
                 scaleY: .5,
                 delay: anime.stagger(5, { from: 'first' })
             })
             // Drop them back down again
-            startAnimation.add({
+            this.timeline.add({
                 translateY: 0,
                 duration: 500,
                 delay: anime.stagger(5, { from: 'last' }),
