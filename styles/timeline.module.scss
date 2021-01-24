@@ -5,7 +5,7 @@
 .timeline{
   position: relative;
   width: 100%;
-  height: 2900px;
+  height: 3500px;
   background-color: #FFF;
 }
 
@@ -29,7 +29,7 @@
   line-height: 150px;
   color: #FFF;
   font-weight: 800;
-  font-size: 2em;
+  font-size: 1.5em;
   text-align: center;
   vertical-align: center;
   background-color: #343a40;
@@ -43,9 +43,6 @@
   float: center;
   margin-left: auto;
   margin-right: auto;
-}
-.line7 {
-  height: 340px;
 }
 
 .timelineEvent {
@@ -71,40 +68,14 @@
 }
 
 // Wrapper for the dates and labels
-.timelineText {
-  position: absolute;
-  width: 100%;
-  float: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-  
 .timelineLabel {
   position: absolute;
   width: 20%;
   color: #343a40;
   font-weight: 800;
-  font-size: 2.5vw;
+  font-size: 2vw;
   right: 0px;
   text-align: right;
-}
-.label1 {
-  top: 380px;
-}
-.label2 {
-  top: 800px;
-}
-.label3 {
-  top: 1220px;
-}
-.label4 {
-  top: 1640px;
-}
-.label5 {
-  top: 2060px;
-}
-.label6 {
-  top: 2480px;
 }
 
 .timelineDate {
@@ -112,25 +83,7 @@
   color: #343a40;
   width: 20%;
   font-weight: 800;
-  font-size: 2.5vw;
+  font-size: 2vw;
   left: 0px;
   text-align: left;
-}
-.date1 {
-  top: 380px;
-}
-.date2 {
-  top: 800px;
-}
-.date3 {
-  top: 1220px;
-}
-.date4 {
-  top: 1640px;
-}
-.date5 {
-  top: 2060px;
-}
-.date6 {
-  top: 2480px;
 }

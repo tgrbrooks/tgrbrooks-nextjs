@@ -12,11 +12,7 @@ class TimelineBox extends Component {
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         this.event_ref = React.createRef();
         this.mask_ref = React.createRef();
-        this.event_element = <div ref={this.event_ref} key={"event"} className={styles.timelineEvent}
-            style={{ backgroundImage: `url(${props.image})` }}
-            onClick={() => this.setState({ playOpen: !this.state.playOpen })}>
-            <div ref={this.mask_ref} key={"mask"} className={styles.timelineMask} />
-        </div>
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -65,8 +61,8 @@ class TimelineBox extends Component {
         // Expand the event window outwards, remove the left and right borders
         this.timeline.add({
             targets: this.event_ref.current,
-            scaleX: [1, 0.45 * this.state.width / 20.],
-            scaleY: [1, 0.3 * this.state.width / 20.],
+            scaleX: [1, 0.39 * this.state.width / 20.],
+            scaleY: [1, 0.26 * this.state.width / 20.],
             borderTopWidth: ['5px', '1px'],
             borderBottomWidth: ['5px', '1px'],
             borderLeftWidth: ['5px', '0px'],
@@ -86,11 +82,18 @@ class TimelineBox extends Component {
         }
     };
 
+    handleClick() {
+        this.setState({ playOpen: !this.state.playOpen });
+    }
+
     render() {
         return (
-            <>
-                {this.event_element}
-            </>
+            <div ref={this.event_ref} key={"event"} className={styles.timelineEvent}
+                 style={{ backgroundImage: `url(${this.props.image})` }}
+                 onClick={this.handleClick}
+                 onMouseEnter={this.props.handler}>
+                <div ref={this.mask_ref} key={"mask"} className={styles.timelineMask} />
+            </div>
         )
     }
 }
