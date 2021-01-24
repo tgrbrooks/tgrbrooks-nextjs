@@ -10,14 +10,14 @@ export default function Layout({ children, home }) {
   return (
     <div className={styles.container}>
       <Head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/images/favicon.ico" />
         <meta
           name="description"
           content="Tom Brooks | Personal Website"
         />
         <meta
           property="og:image"
-          content="/favicon.ico"
+          content="/images/favicon.ico"
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />

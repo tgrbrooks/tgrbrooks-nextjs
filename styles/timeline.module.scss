@@ -1,0 +1,136 @@
+@import "mixins";
+@import "defaults";
+
+// Div for entire timeline, setting the size
+.timeline{
+  position: relative;
+  width: 100%;
+  height: 2900px;
+  background-color: #FFF;
+}
+
+// Wrapper for the lines and events
+.timelineBackground {
+  position: absolute;
+  float: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.timelineTitle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  color: #FFF;
+  font-weight: 800;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: center;
+  background-color: #343a40;
+  border-radius: 50%;
+}
+
+.timelineLine {
+  background: #343a40;
+  width: 10px;
+  height: 400px;
+  float: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.line7 {
+  height: 340px;
+}
+
+.timelineEvent {
+  position: relative;
+  background: #FFF;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border: 5px solid #343a40;
+  width: 20px;
+  height: 20px;
+  float: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.timelineMask {
+  position: absolute;
+  background: #FFF;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// Wrapper for the dates and labels
+.timelineText {
+  position: absolute;
+  width: 100%;
+  float: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+  
+.timelineLabel {
+  position: absolute;
+  width: 20%;
+  color: #343a40;
+  font-weight: 800;
+  font-size: 2.5vw;
+  right: 0px;
+  text-align: right;
+}
+.label1 {
+  top: 380px;
+}
+.label2 {
+  top: 800px;
+}
+.label3 {
+  top: 1220px;
+}
+.label4 {
+  top: 1640px;
+}
+.label5 {
+  top: 2060px;
+}
+.label6 {
+  top: 2480px;
+}
+
+.timelineDate {
+  position: absolute;
+  color: #343a40;
+  width: 20%;
+  font-weight: 800;
+  font-size: 2.5vw;
+  left: 0px;
+  text-align: left;
+}
+.date1 {
+  top: 380px;
+}
+.date2 {
+  top: 800px;
+}
+.date3 {
+  top: 1220px;
+}
+.date4 {
+  top: 1640px;
+}
+.date5 {
+  top: 2060px;
+}
+.date6 {
+  top: 2480px;
+}

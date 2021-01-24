@@ -6,7 +6,7 @@ export default function About () {
   return (
     <PageLayout title="About" type={2}>
       <Head>
-        <title>About</title>
+        <title>About | Tom Brooks</title>
       </Head>
       <section className={utilStyles.headingMd}>
         <p>Words about me!</p>
