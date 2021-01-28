@@ -45,6 +45,15 @@
   margin-right: auto;
 }
 
+.timelineEndLine {
+  background: #343a40;
+  width: 10px;
+  height: 880px;
+  float: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .timelineEvent {
   position: relative;
   background: #FFF;
@@ -73,7 +82,7 @@
   width: 20%;
   color: #343a40;
   font-weight: 800;
-  font-size: 2vw;
+  font-size: 1em;
   right: 0px;
   text-align: right;
 }
@@ -83,7 +92,7 @@
   color: #343a40;
   width: 20%;
   font-weight: 800;
-  font-size: 2vw;
+  font-size: 1em;
   left: 0px;
   text-align: left;
 }

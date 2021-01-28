@@ -2,6 +2,7 @@ import Head from 'next/head'
 import PageLayout from '../components/pageLayout'
 import utilStyles from '../styles/utils.module.scss'
 import Timeline from '../components/timeline'
+import SkillTree from '../components/skilltree'
 
 export default function CV () {
   return (
@@ -16,6 +17,7 @@ export default function CV () {
         </p>
       </section>
       <Timeline/>
+      <SkillTree/>
     </PageLayout>
   )
 }
