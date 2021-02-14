@@ -1,0 +1,42 @@
+.coverToggle{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+  }
+  
+  .contentBox{
+    width: 630px;
+    height: 891px;
+    float: center;
+    padding: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .coverAddress{
+    width: 100%;
+  }
+  .addressContent{
+    float: right;
+    //display: none;
+  }
+  .coverDate{
+    width: 100%;
+    float: right;
+  }
+  .dateContent{
+    float: right;
+  }
+  .coverStart{
+    width: 100%;
+    float: left;
+  }
+  .letterContent{
+    float: left;
+  }
+  .coverEnd{
+    width: 100%;
+    float: left;
+  }
