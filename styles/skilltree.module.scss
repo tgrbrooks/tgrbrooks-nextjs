@@ -44,35 +44,35 @@
   cursor: pointer;
 }
 
-.sunburst-viz text {
-  font-family: unset !important;
-  font-size: 10px !important;
-  font-weight: 800 !important;
+.sunburstViz text {
+  font-family: unset;
+  font-size: 10px;
+  font-weight: 800;
   dominant-baseline: middle;
   text-anchor: middle;
   pointer-events: none;
   fill: #222;
 }
 
-.sunburst-viz text .text-contour {
+.sunburstViz text .text-contour {
   fill: none;
   stroke: white;
-  stroke-width: 5px !important;
+  stroke-width: 5px;
   stroke-linejoin: 'round';
 }
 
-.sunburst-viz .main-arc {
+.sunburstViz .main-arc {
   stroke: white;
   stroke-width: 1px;
   transition: opacity .4s;
 }
 
-.sunburst-viz .main-arc:hover {
+.sunburstViz .main-arc:hover {
   opacity: 0.85;
   transition: opacity .05s;
 }
 
-.sunburst-viz .hidden-arc {
+.sunburstViz .hidden-arc {
   fill: none;
 }
 

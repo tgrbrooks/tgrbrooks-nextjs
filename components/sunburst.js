@@ -25,128 +25,180 @@ class Sunburst extends React.Component {
         }
     }
 
-    arcTweenData(a, i, node, x, arc) {
-        const oi = d3.interpolate({ x0: (a.x0s ? a.x0s : 0), x1: (a.x1s ? a.x1s : 0) }, a);
-        function tween(t) {
-            const b = oi(t);
-            a.x0s = b.x0;
-            a.x1s = b.x1;
-            return arc(b);
-        }
-        if (i === 0) {
-            const xd = d3.interpolate(x.domain(), [node.x0, node.x1]);
-            return function (t) {
-                x.domain(xd(t));
-                return tween(t);
-            };
-        } else {  // eslint-disable-line
-            return tween;
-        }
-    }
+    
 
-    update(root, firstBuild, svg, partition, hueDXScale, x, y, radius, arc, node, self) {
+    update(root, firstBuild, svg, partition, hueDXScale, x, y, radius, arc, middleArc, node, self) {
         if (firstBuild) {
             firstBuild = false;
-            function arcTweenZoom(d) {
-                const xd = d3.interpolate(x.domain(), [d.x0, d.x1]),
-                    yd = d3.interpolate(y.domain(), [d.y0, 1]),
-                    yr = d3.interpolate(y.range(), [d.y0 ? 40 : 0, radius]);
-                return function (data, i) {
-                    return i
-                        ? () => arc(data)
-                        : (t) => { x.domain(xd(t)); y.domain(yd(t)).range(yr(t)); return arc(data); };
-                };
-            }
+            // Handle clicking on the different levels
             function click(d) {
                 node = d;
                 self.props.onSelect && self.props.onSelect(d);
-                svg.selectAll('path').transition().duration(1000).attrTween('d', arcTweenZoom(d));
+                svg.selectAll('path.main-arc')
+                    .transition().duration(1000)
+                    .attrTween('d', utils.arcTweenZoom(d, x, y, radius, arc));
+                svg.selectAll('path.hidden-arc')
+                    .transition().duration(1000)
+                    .attrTween('d', utils.arcTweenZoom(d, x, y, radius, middleArc));
+                svg.selectAll('.path-label')
+                    .transition().duration(1000)
+                    .styleTween('display', d => () => utils.textFits(d, x, y) ? null : 'none')
             }
-            //const tooltipContent = self.props.tooltipContent;
-            const tooltipContent = <div className="sunburstTooltip" style="display: inline; position: absolute; max-width: 320px; white-space: nowrap; font: 12px sans-serif; color: white; z-index: 10; font-weight: bold; background: rgba(0,0,0,0.65); border-radius: 3px; padding: 5px; text-align: center; margin-bottom: 5px;" />;
+            // Create the tooltip div
+            const tooltipContent = <div className="sunburstTooltip" style="display: inline;
+                                                                           position: absolute;
+                                                                           max-width: 320px;
+                                                                           white-space: nowrap;
+                                                                           font: 12px sans-serif;
+                                                                           color: white;
+                                                                           z-index: 10;
+                                                                           font-weight: bold;
+                                                                           background: rgba(0,0,0,0.65);
+                                                                           border-radius: 3px;
+                                                                           padding: 5px;
+                                                                           opacity: 0;
+                                                                           text-align: center;
+                                                                           margin-bottom: 5px;" />;
             const tooltip = d3.select(`#${self.props.keyId}`)
-                .append(tooltipContent ? tooltipContent.type : 'div')
-                .style('position', 'absolute')
-                .style('z-index', '10')
-                .style('opacity', '0');
-            if (tooltipContent) {
-                Object.keys(tooltipContent.props).forEach((key) => {
-                    tooltip.attr(key, tooltipContent.props[key]);
-                });
-            }
-            svg.selectAll('path').data(partition(root).descendants()).enter().append('path')
+                .append(tooltipContent.type)
+            Object.keys(tooltipContent.props).forEach((key) => {
+                tooltip.attr(key, tooltipContent.props[key]);
+            });
+            const slice = svg.selectAll('slice').data(partition(root).descendants()).enter().append('g')
+                .attr('class', 'slice')
+                .style('opacity', 1);
+            slice.append('path')
+                .attr('class', 'main-arc')
+                // Set the fill colour
                 .style('fill', (d) => {
                     let hue;
                     const current = d;
+                    // Set the color of the root node
                     if (current.depth === 0) {
-                        return '#33cccc';
+                        //return '#33cccc';
+                        return '#eee';
                     }
+                    // Set the color of the first level nodes
                     if (current.depth <= 1) {
                         hue = hueDXScale(d.x0);
                         current.fill = d3.hsl(hue, 0.5, 0.6);
                         return current.fill;
                     }
-                    current.fill = current.parent.fill.brighter(0.5);
+                    // Set the child nodes in the subsequent levels as different shades
+                    current.fill = current.parent.fill.brighter(0.35);
                     const hsl = d3.hsl(current.fill);
                     hue = hueDXScale(current.x0);
                     const colorshift = hsl.h + (hue / 4);
                     return d3.hsl(colorshift, hsl.s, hsl.l);
                 })
-                .attr('stroke', '#fff')
+                // Style the lines between segments
+                .attr('stroke', '#eee')
                 .attr('stroke-width', '1')
+                // Set the function that handles click events
                 .on('click', d => click(d, node, svg, self, x, y, radius, arc))
+                // Create the tooltip and set the content
                 .on('mouseover', function (d) {
-                    if (self.props.tooltip) {
-                        d3.select(this).style('cursor', 'pointer');
-                        tooltip.html(() => { const name = utils.formatNameTooltip(d); return name; });
-                        return tooltip.transition().duration(50).style('opacity', 1);
-                    }
-                    return null;
+                    d3.select(this).style('cursor', 'pointer');
+                    tooltip.html(() => { const name = utils.formatNameTooltip(d); return name; });
+                    return tooltip.transition().duration(50).style('opacity', 1);
                 })
+                // Set the tooltip position
                 .on('mousemove', () => {
-                    if (self.props.tooltip) {
-                        tooltip
-                            .style('top', `${d3.event.pageY - 4320}px`)
-                            .style('left', `${self.props.tooltipPosition === 'right' ? d3.event.pageX - 630 : d3.event.pageX - 50}px`);
-                    }
+                    tooltip
+                        .style('top', `${d3.event.pageY - 4320}px`)
+                        .style('left', `${d3.event.pageX - 630}px`);
                     return null;
                 })
+                // Set the tooltip back to normal
                 .on('mouseout', function () {
-                    if (self.props.tooltip) {
-                        d3.select(this).style('cursor', 'default');
-                        tooltip.transition().duration(50).style('opacity', 0);
-                    }
+                    d3.select(this).style('cursor', 'default');
+                    tooltip.transition().duration(50).style('opacity', 0);
                     return null;
                 });
+            slice.append('path')
+                .attr('class', 'hidden-arc')
+                // Set ID for the text to get the reference of
+                .attr('id', d => `hidden-arc-${d.data.name}`)
+                .style('fill', 'none');
+            // Create the arcs for each node
+            const label = slice.append('text')
+                .attr('class', 'path-label')
+                .attr('dominant-baseline', 'middle')
+                .attr('text-anchor', 'middle')
+                .attr('pointer-events', 'none')
+            label.append('textPath')
+                .attr('class', 'text-contour')
+                .attr('startOffset', '25%')
+                .attr('stroke', 'white')
+                .attr('stroke-width', 5)
+                .attr('stroke-linejoin', 'round')
+                .attr('href', d => `#hidden-arc-${d.data.name}`)
+                .text(d => `${d.data.name}`);
+            label.append('textPath')
+                .attr('class', 'text-stroke')
+                .attr('startOffset', '25%')
+                .attr('href', d => `#hidden-arc-${d.data.name}`)
+                .text(d => `${d.data.name}`);
         } else {
+            // If the sunburst has already been created just select all visible paths
             svg.selectAll('path').data(partition(root).descendants());
         }
-        svg.selectAll('path').transition().duration(1000).attrTween('d', (d, i) => self.arcTweenData(d, i, node, x, arc));
+        // Control initial opening animation
+        svg.selectAll('path.main-arc')
+            .transition().duration(1000)
+            .attrTween('d', (d, i) => utils.arcTweenData(d, i, node, x, arc));
+        svg.selectAll('path.hidden-arc')
+            .transition().duration(1000)
+            .attrTween('d', (d, i) => utils.arcTweenData(d, i, node, x, middleArc));
+        svg.selectAll('.path-label')
+            .transition().duration(1000)
+            .styleTween('display', d => () => utils.textFits(d, x, y) ? null : 'none')
+        svg.selectAll('text.path-label').select('textPath.text-contour');
+        svg.selectAll('text.path-label').select('textPath.text-stroke');
     }
 
     renderSunburst(props) {
         if (props.data) {
             const self = this,
-            gWidth = props.width,
+                // Set total size of chart
+                gWidth = props.width,
                 gHeight = props.height,
                 radius = (Math.min(gWidth, gHeight) / 2) - 10,
+                // Create the svg element and put it in the right place
                 svg = d3.select('svg').append('g').attr('transform', `translate(${gWidth / 2},${gHeight / 2})`),
+                // Controls how far around the sunburst goes
                 x = d3.scaleLinear().range([0, 2 * Math.PI]),
-                y = props.scale === 'linear' ? d3.scaleLinear().range([0, radius]) : d3.scaleSqrt().range([0, radius]),
+                // Controls the relative size of each layer
+                y = d3.scaleLinear().range([0, radius]),
                 partition = d3.partition(),
+                // Controls the arc geometry for each node
                 arc = d3.arc()
                     .startAngle(d => Math.max(0, Math.min(2 * Math.PI, x(d.x0))))
                     .endAngle(d => Math.max(0, Math.min(2 * Math.PI, x(d.x1))))
                     .innerRadius(d => Math.max(0, y(d.y0)))
                     .outerRadius(d => Math.max(0, y(d.y1))),
+                // Line through the middle of each arc to attach text to, flip angle half way to get text orientation right
+                middleArc = d3.arc()
+                    .startAngle(d => ((x(d.x0) + x(d.x1)) / 2 > Math.PI / 2 && (x(d.x0) + x(d.x1)) / 2 < Math.PI * 3 / 2)
+                        ? Math.max(0, Math.min(2 * Math.PI, x(d.x1)))
+                        : Math.max(0, Math.min(2 * Math.PI, x(d.x0))))
+                    .endAngle(d => ((x(d.x0) + x(d.x1)) / 2 > Math.PI / 2 && (x(d.x0) + x(d.x1)) / 2 < Math.PI * 3 / 2)
+                        ? Math.max(0, Math.min(2 * Math.PI, x(d.x0)))
+                        : Math.max(0, Math.min(2 * Math.PI, x(d.x1))))
+                    //.endAngle(d => Math.max(0, Math.min(2 * Math.PI, x(d.x1))))
+                    .innerRadius(d => Math.max(0, (y(d.y0) + y(d.y1)) / 2))
+                    .outerRadius(d => Math.max(0, (y(d.y0) + y(d.y1)) / 2)),
+                // Controls to color scaling of the first level nodes
                 hueDXScale = d3.scaleLinear()
                     .domain([0, 1])
                     .range([0, 360]),
+                // Create a hierarchical layout from the data
                 rootData = d3.hierarchy(props.data);
             const firstBuild = true;
             const node = rootData;
+            // Add up the values of all children to set sizes of nodes
             rootData.sum(d => d.size);
-            self.update(rootData, firstBuild, svg, partition, hueDXScale, x, y, radius, arc, node, self); // GO!
+            self.update(rootData, firstBuild, svg, partition, hueDXScale, x, y, radius, arc, middleArc, node, self); // GO!
         }
     }
 
