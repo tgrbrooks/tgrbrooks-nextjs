@@ -15,6 +15,16 @@ import styles from '../styles/skilltree.module.scss'
  * height => Integer - Height of the Chart Container *
  */
 class Sunburst extends React.Component {
+    constructor(props) {
+        super(props);
+    
+        this.state = { mouse_x: 0, mouse_y: 0 };
+      }
+
+      _onMouseMove(e) {
+        this.setState({ mouse_x: e.screenX, mouse_y: e.screenY });
+      }
+
     componentDidMount() {
         this.renderSunburst(this.props);
     }
@@ -23,9 +33,7 @@ class Sunburst extends React.Component {
         if (!isEqual(this.props, nextProps)) {
             this.renderSunburst(nextProps);
         }
-    }
-
-    
+    }    
 
     update(root, firstBuild, svg, partition, hueDXScale, x, y, radius, arc, middleArc, node, self) {
         if (firstBuild) {
@@ -45,20 +53,8 @@ class Sunburst extends React.Component {
                     .styleTween('display', d => () => utils.textFits(d, x, y) ? null : 'none')
             }
             // Create the tooltip div
-            const tooltipContent = <div className="sunburstTooltip" style="display: inline;
-                                                                           position: absolute;
-                                                                           max-width: 320px;
-                                                                           white-space: nowrap;
-                                                                           font: 12px sans-serif;
-                                                                           color: white;
-                                                                           z-index: 10;
-                                                                           font-weight: bold;
-                                                                           background: rgba(0,0,0,0.65);
-                                                                           border-radius: 3px;
-                                                                           padding: 5px;
-                                                                           opacity: 0;
-                                                                           text-align: center;
-                                                                           margin-bottom: 5px;" />;
+            const tooltipContent = this.props.tooltipContent;
+            //const tooltipContent = <div className={styles.sunburstTooltip}/>;
             const tooltip = d3.select(`#${self.props.keyId}`)
                 .append(tooltipContent.type)
             Object.keys(tooltipContent.props).forEach((key) => {
@@ -105,8 +101,8 @@ class Sunburst extends React.Component {
                 // Set the tooltip position
                 .on('mousemove', () => {
                     tooltip
-                        .style('top', `${d3.event.pageY - 4320}px`)
-                        .style('left', `${d3.event.pageX - 630}px`);
+                        .style('top', `${this.state.mouse_y - 440}px`)
+                        .style('left', `${this.state.mouse_x - 620}px`);
                     return null;
                 })
                 // Set the tooltip back to normal
@@ -185,7 +181,6 @@ class Sunburst extends React.Component {
                     .endAngle(d => ((x(d.x0) + x(d.x1)) / 2 > Math.PI / 2 && (x(d.x0) + x(d.x1)) / 2 < Math.PI * 3 / 2)
                         ? Math.max(0, Math.min(2 * Math.PI, x(d.x0)))
                         : Math.max(0, Math.min(2 * Math.PI, x(d.x1))))
-                    //.endAngle(d => Math.max(0, Math.min(2 * Math.PI, x(d.x1))))
                     .innerRadius(d => Math.max(0, (y(d.y0) + y(d.y1)) / 2))
                     .outerRadius(d => Math.max(0, (y(d.y0) + y(d.y1)) / 2)),
                 // Controls to color scaling of the first level nodes
@@ -207,7 +202,9 @@ class Sunburst extends React.Component {
             <div id={this.props.keyId} className={styles.skilltree}>
                 <div className={styles.skilltreeMask}>Skills</div>
                 <div className={styles.sunburstViz}>
-                    <svg style={{ width: parseInt(this.props.width, 10) || 480, height: parseInt(this.props.height, 10) || 400 }} id={`${this.props.keyId}-svg`} />
+                    <svg style={{ width: parseInt(this.props.width, 10) || 480, height: parseInt(this.props.height, 10) || 400 }}
+                         id={`${this.props.keyId}-svg`}
+                         onMouseMove={this._onMouseMove.bind(this)}/>
                 </div>
             </div>
         );
