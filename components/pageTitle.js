@@ -10,7 +10,7 @@ const numberOfElements = col * row;
 const PREFIX = '__anime__';
 
 class AnimatedTitle extends Component {
-    state = { playWave: false };
+    state = { playWave: false, index: 0 };
 
     constructor(props) {
         super(props);
@@ -24,7 +24,7 @@ class AnimatedTitle extends Component {
             this.div_elements.push(<div ref={this.targetRefs[i]}
                 key={`${PREFIX}${i}`}
                 className={utilStyles.staggerVisualizerDiv}
-                onClick={() => this.setState({ playWave: !this.state.playWave })}
+                onClick={() => this.setState({ playWave: true, index: i })}
             />);
         }
     }
@@ -156,21 +156,21 @@ class AnimatedTitle extends Component {
         // Make a wave animation and reduce scale by half
         this.wave.add({
             translateX: [
-                { value: anime.stagger('-.1rem', { grid: grid, from: 'center', axis: 'x' }) },
-                { value: anime.stagger('.1rem', { grid: grid, from: 'center', axis: 'x' }) },
-                { value: anime.stagger('0', { grid: grid, from: 'center', axis: 'x' }) }
+                { value: anime.stagger('-.1rem', { grid: grid, from: this.state.index, axis: 'x' }) },
+                { value: anime.stagger('.1rem', { grid: grid, from: this.state.index, axis: 'x' }) },
+                { value: anime.stagger('0', { grid: grid, from: this.state.index, axis: 'x' }) }
             ],
             translateY: [
-                { value: anime.stagger('-.1rem', { grid: grid, from: 'center', axis: 'y' }) },
-                { value: anime.stagger('.1rem', { grid: grid, from: 'center', axis: 'y' }) },
-                { value: anime.stagger('0', { grid: grid, from: 'center', axis: 'y' }) }
+                { value: anime.stagger('-.1rem', { grid: grid, from: this.state.index, axis: 'y' }) },
+                { value: anime.stagger('.1rem', { grid: grid, from: this.state.index, axis: 'y' }) },
+                { value: anime.stagger('0', { grid: grid, from: this.state.index, axis: 'y' }) }
             ],
             duration: 800,
             scale: [
                 { value: .8 },
                 { value: 1 }
             ],
-            delay: anime.stagger(100, { grid: grid, from: 'center' })
+            delay: anime.stagger(70, { grid: grid, from: this.state.index })
         })
         if (this.state.playWave) {
             this.wave.play();

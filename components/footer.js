@@ -24,7 +24,7 @@ export default function Footer() {
                         <ul className={styles.contactList}>
                             <img className={styles.socialIcon} src="/images/icon-github.svg" />
                             <a className={styles.footerLink} href="https://github.com/tgrbrooks">  tgrbrooks</a>
-                            <br />
+                            <br className={styles.footerBr}/>
                             <img className={styles.socialIcon} src="/images/icon-linkedin.svg" />
                             <a className={styles.footerLink} href="https://www.linkedin.com/in/tom-brooks-a940a9a7/">  tom-brooks-a940a9a7</a>
                         </ul>
