@@ -17,15 +17,20 @@ import styles from '../styles/skilltree.module.scss'
 class Sunburst extends React.Component {
     constructor(props) {
         super(props);
-    
-        this.state = { mouse_x: 0, mouse_y: 0 };
-      }
+        this.state = { mouse_x: 0, mouse_y: 0, disabled: false };
+    }
 
-      _onMouseMove(e) {
+    _onMouseMove(e) {
         this.setState({ mouse_x: e.screenX, mouse_y: e.screenY });
-      }
+    }
 
-    componentDidMount() {
+    createSunburst() {
+        console.log("clicked")
+        this.renderSunburst(this.props);
+        this.setState({disabled: true})
+    }
+
+    /*componentDidMount() {
         this.renderSunburst(this.props);
     }
 
@@ -33,7 +38,7 @@ class Sunburst extends React.Component {
         if (!isEqual(this.props, nextProps)) {
             this.renderSunburst(nextProps);
         }
-    }    
+    }*/
 
     update(root, firstBuild, svg, partition, hueDXScale, x, y, radius, arc, middleArc, node, self) {
         if (firstBuild) {
@@ -101,7 +106,7 @@ class Sunburst extends React.Component {
                 // Set the tooltip position
                 .on('mousemove', () => {
                     tooltip
-                        .style('top', `${this.state.mouse_y - 440}px`)
+                        .style('top', `${this.state.mouse_y - 340}px`)
                         .style('left', `${this.state.mouse_x - 620}px`);
                     return null;
                 })
@@ -200,11 +205,13 @@ class Sunburst extends React.Component {
     render() {
         return (
             <div id={this.props.keyId} className={styles.skilltree}>
-                <div className={styles.skilltreeMask}>Skills</div>
+                <div className={styles.skilltreeMask}
+                     style={{ pointerEvents: this.state.disabled ? 'none' : 'auto' }}
+                     onClick={this.createSunburst.bind(this)}>Skills</div>
                 <div className={styles.sunburstViz}>
                     <svg style={{ width: parseInt(this.props.width, 10) || 480, height: parseInt(this.props.height, 10) || 400 }}
-                         id={`${this.props.keyId}-svg`}
-                         onMouseMove={this._onMouseMove.bind(this)}/>
+                        id={`${this.props.keyId}-svg`}
+                        onMouseMove={this._onMouseMove.bind(this)} />
                 </div>
             </div>
         );
