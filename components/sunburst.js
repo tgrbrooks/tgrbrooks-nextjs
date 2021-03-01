@@ -1,5 +1,4 @@
 import React from 'react';
-import { isEqual } from 'lodash/lang';
 import * as d3 from 'd3v4';
 import * as utils from '../lib/sunburstUtils';
 import styles from '../styles/skilltree.module.scss'
@@ -21,24 +20,13 @@ class Sunburst extends React.Component {
     }
 
     _onMouseMove(e) {
-        this.setState({ mouse_x: e.screenX, mouse_y: e.screenY });
+        this.setState({ mouse_x: e.screenX, mouse_y: e.screenY + window.pageYOffset });
     }
 
     createSunburst() {
-        console.log("clicked")
         this.renderSunburst(this.props);
         this.setState({disabled: true})
     }
-
-    /*componentDidMount() {
-        this.renderSunburst(this.props);
-    }
-
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        if (!isEqual(this.props, nextProps)) {
-            this.renderSunburst(nextProps);
-        }
-    }*/
 
     update(root, firstBuild, svg, partition, hueDXScale, x, y, radius, arc, middleArc, node, self) {
         if (firstBuild) {
@@ -101,14 +89,20 @@ class Sunburst extends React.Component {
                 .on('mouseover', function (d) {
                     d3.select(this).style('cursor', 'pointer');
                     tooltip.html(() => { const name = utils.formatNameTooltip(d); return name; });
-                    return tooltip.transition().duration(50).style('opacity', 1);
-                })
-                // Set the tooltip position
-                .on('mousemove', () => {
+                    // Translate to cartesian coordinates, midway through the arc
+                    let r = y(d.y1);
+                    let theta = x((d.x0+d.x1)/2);
+                    let ypos = r * Math.cos(theta);
+                    let xpos = r * Math.sin(theta);
+                    // Shift the anchor point depending on the quadrant
+                    let w = tooltip.node().getBoundingClientRect().width;
+                    let h = tooltip.node().getBoundingClientRect().height;
+                    if (xpos < 0) { xpos = xpos - w; }
+                    if (ypos < 0) { ypos = ypos - h; }
                     tooltip
-                        .style('top', `${this.state.mouse_y - 340}px`)
-                        .style('left', `${this.state.mouse_x - 620}px`);
-                    return null;
+                        .style('bottom', `${ypos}px`)
+                        .style('left', `${xpos}px`);
+                    return tooltip.transition().duration(50).style('opacity', 1);
                 })
                 // Set the tooltip back to normal
                 .on('mouseout', function () {
@@ -211,7 +205,7 @@ class Sunburst extends React.Component {
                 <div className={styles.sunburstViz}>
                     <svg style={{ width: parseInt(this.props.width, 10) || 480, height: parseInt(this.props.height, 10) || 400 }}
                         id={`${this.props.keyId}-svg`}
-                        onMouseMove={this._onMouseMove.bind(this)} />
+                        onMouseMove={this._onMouseMove.bind(this)}/>
                 </div>
             </div>
         );
