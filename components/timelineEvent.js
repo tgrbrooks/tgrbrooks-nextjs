@@ -22,7 +22,7 @@ class TimelineEvent extends Component {
         return (
             <>
                 <div className={styles.timelineLine} ></div>
-                <TimelineBox image={this.props.image} handler={this.showText}/>
+                <TimelineBox image={"/images/events/" + this.props.image} handler={this.showText}/>
                 <TimelineDate date={this.props.date} ref={this.dateRef} />
                 <TimelineLabel label={this.props.label} ref={this.labelRef} />
             </>

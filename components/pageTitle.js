@@ -2,39 +2,79 @@ import utilStyles from '../styles/utils.module.scss'
 import React, { Component } from 'react';
 import anime from 'animejs'
 import { phraseToArray } from '../lib/letters'
+import { cloneElement } from 'react';
 
-const grid = [50, 15];
-const col = grid[0];
-const row = grid[1];
-const numberOfElements = col * row;
 const PREFIX = '__anime__';
 
 class AnimatedTitle extends Component {
-    state = { playWave: false, index: 0 };
+    state = { 
+        playStart: true, 
+        playWave: false, 
+        index: 0, 
+        windowWidth: 0,
+        windowHeight: 0,
+    };
 
     constructor(props) {
         super(props);
-        this.text_array = phraseToArray(props.title, col, row);
-        this.div_elements = [];
+        this.grid = [props.ncols, props.nrows]
+        this.textArray = phraseToArray(props.title, props.ncols, props.nrows);
+        this.divElements = [];
         this.targets = [];
-        this.col_targets = [];
+        this.colTargets = [];
         this.targetRefs = [];
-        for (let i = 0; i < numberOfElements; i++) {
+        for (let i = 0; i < props.nrows * props.ncols; i++) {
             this.targetRefs.push(React.createRef());
-            this.div_elements.push(<div ref={this.targetRefs[i]}
+            this.divElements.push(<div ref={this.targetRefs[i]}
                 key={`${PREFIX}${i}`}
                 className={utilStyles.staggerVisualizerDiv}
-                onClick={() => this.setState({ playWave: true, index: i })}
+                onClick={() => this.setState({ playStart: false, playWave: true, index: i })}
             />);
         }
+        this.updateWindowSize = this.updateWindowSize.bind(this)
+    }
+
+    updateWindowSize(e) {
+        console.log(window.innerWidth)
+        console.log(this.props.width)
+        // If props.width < 1 interpret as a percentage, otherwise interpret at set number of pixels
+        let divWidth = Math.floor( Math.min(this.props.width, window.innerWidth) / this.props.ncols )
+        if (this.props.width < 1) {
+            let totalWidth = Math.max(window.innerWidth * this.props.width, this.props.minWidth)
+            totalWidth = Math.min(totalWidth, window.innerWidth)
+            divWidth = Math.floor( totalWidth / this.props.ncols )
+        }
+        this.divElements = []
+        for (let i = 0; i < this.props.nrows * this.props.ncols; i++) {
+            this.divElements.push(<div ref={this.targetRefs[i]}
+                key={`${PREFIX}${i}`}
+                className={utilStyles.staggerVisualizerDiv}
+                onClick={() => this.setState({ playStart: false, playWave: true, index: i })}
+                style={{width: divWidth, height: divWidth}}
+            />);
+        }
+        const windowWidth = divWidth * this.props.ncols
+        const windowHeight = divWidth * this.props.nrows
+        this.setState({ windowWidth: windowWidth, windowHeight: windowHeight });
     }
 
     componentDidMount() {
+        this.updateWindowSize()
+        window.addEventListener('resize', this.updateWindowSize);
         this.createStartAnime();
     }
 
     componentDidUpdate() {
-        this.createWaveAnime();
+        if (this.state.playStart) {
+            this.timeline.play()
+        }
+        else {
+            this.createWaveAnime();
+        }
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWindowSize);
     }
 
     createStartAnime = () => {
@@ -46,8 +86,8 @@ class AnimatedTitle extends Component {
         for (let [i, ref] of this.targetRefs.entries()) {
             if (ref.current) {
                 this.targets.push(ref.current);
-                if (this.text_array[i]) {
-                    this.col_targets.push(ref.current);
+                if (this.textArray[i]) {
+                    this.colTargets.push(ref.current);
                 }
             }
         }
@@ -56,7 +96,7 @@ class AnimatedTitle extends Component {
             targets: this.targets,
             easing: 'easeInOutSine',
             loop: false,
-            autoplay: true
+            autoplay: false
         });
         if (this.props.type === 1) {
             this.timeline.add({
@@ -70,7 +110,7 @@ class AnimatedTitle extends Component {
                 scaleX: 1,
                 rotate: 180,
                 duration: 500,
-                delay: anime.stagger(100, { grid: grid, from: 'center' })
+                delay: anime.stagger(100, { grid: this.grid, from: 'center' })
             })
         }
         if (this.props.type === 2) {
@@ -78,7 +118,7 @@ class AnimatedTitle extends Component {
             this.timeline.add({
                 scaleX: .25,
                 scaleY: .25,
-                rotate: anime.stagger([180, 0], { grid: grid, from: 'center' }),
+                rotate: anime.stagger([180, 0], { grid: this.grid, from: 'center' }),
                 delay: anime.stagger(20, { from: 'center' })
             })
         }
@@ -93,7 +133,7 @@ class AnimatedTitle extends Component {
                     { value: 2, easing: 'easeInOutQuad', duration: 500 },
                     { value: .1, easing: 'easeOutSine', duration: 500 }
                 ],
-                delay: anime.stagger(200, { grid: grid, from: 'center' })
+                delay: anime.stagger(200, { grid: this.grid, from: 'center' })
             })
         }
         if (this.props.type === 4) {
@@ -113,10 +153,10 @@ class AnimatedTitle extends Component {
             })
         }
         this.timeline.add({
-            targets: this.col_targets,
+            targets: this.colTargets,
             backgroundColor: "#FFF",
             borderColor: "#343a40",
-            delay: anime.stagger(0, { grid: grid, from: 'center' }),
+            delay: anime.stagger(0, { grid: this.grid, from: 'center' }),
             easing: 'easeInOutSine'
         })
         this.timeline.add({
@@ -126,7 +166,7 @@ class AnimatedTitle extends Component {
             scaleX: 1,
             scale: 1,
             borderRadius: '0%',
-            delay: anime.stagger(20, { grid: grid, from: 'center' })
+            delay: anime.stagger(20, { grid: this.grid, from: 'center' })
         })
     };
 
@@ -139,8 +179,8 @@ class AnimatedTitle extends Component {
         for (let [i, ref] of this.targetRefs.entries()) {
             if (ref.current) {
                 this.targets.push(ref.current);
-                if (this.text_array[i]) {
-                    this.col_targets.push(ref.current);
+                if (this.textArray[i]) {
+                    this.colTargets.push(ref.current);
                 }
             }
         }
@@ -156,21 +196,21 @@ class AnimatedTitle extends Component {
         // Make a wave animation and reduce scale by half
         this.wave.add({
             translateX: [
-                { value: anime.stagger('-.1rem', { grid: grid, from: this.state.index, axis: 'x' }) },
-                { value: anime.stagger('.1rem', { grid: grid, from: this.state.index, axis: 'x' }) },
-                { value: anime.stagger('0', { grid: grid, from: this.state.index, axis: 'x' }) }
+                { value: anime.stagger('-.1rem', { grid: this.grid, from: this.state.index, axis: 'x' }) },
+                { value: anime.stagger('.1rem', { grid: this.grid, from: this.state.index, axis: 'x' }) },
+                { value: anime.stagger('0', { grid: this.grid, from: this.state.index, axis: 'x' }) }
             ],
             translateY: [
-                { value: anime.stagger('-.1rem', { grid: grid, from: this.state.index, axis: 'y' }) },
-                { value: anime.stagger('.1rem', { grid: grid, from: this.state.index, axis: 'y' }) },
-                { value: anime.stagger('0', { grid: grid, from: this.state.index, axis: 'y' }) }
+                { value: anime.stagger('-.1rem', { grid: this.grid, from: this.state.index, axis: 'y' }) },
+                { value: anime.stagger('.1rem', { grid: this.grid, from: this.state.index, axis: 'y' }) },
+                { value: anime.stagger('0', { grid: this.grid, from: this.state.index, axis: 'y' }) }
             ],
             duration: 800,
             scale: [
                 { value: .8 },
                 { value: 1 }
             ],
-            delay: anime.stagger(70, { grid: grid, from: this.state.index })
+            delay: anime.stagger(70, { grid: this.grid, from: this.state.index })
         })
         if (this.state.playWave) {
             this.wave.play();
@@ -180,8 +220,8 @@ class AnimatedTitle extends Component {
     render() {
         return (
             <article className={utilStyles.animationBackground}>
-                <div className={utilStyles.staggerVisualizer}>
-                    {this.div_elements}
+                <div className={utilStyles.staggerVisualizer} style={{width: this.state.windowWidth, height: this.state.windowHeight}}>
+                    {this.divElements}
                 </div >
             </article>
         )

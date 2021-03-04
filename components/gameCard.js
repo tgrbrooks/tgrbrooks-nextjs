@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 
 export default function GameCard({ children, title, images, repo, status }) {
   var carouselItems = []
-  images.forEach((image, i) => carouselItems.push(<Carousel.Item>
+  images.forEach((image, i) => carouselItems.push(<Carousel.Item key={"gameCard_"+title+"_"+i}>
     <img
       className="d-block w-100"
       src={"/images/games/" + image}

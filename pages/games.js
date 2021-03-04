@@ -20,8 +20,8 @@ export default function Games() {
       <CardDeck>
         <GameCard title={"Valentine's Adventure"} images={["adventure1.png", "adventure2.png", "adventure3.png"]} repo={"AdventureGame"} status={"Maintained"}>
           <p>I thought this would be a fun way of learning some JavaScript and it was, but I probably spent about 10% of the time writing code and the rest doing pixel art.</p>
-          <p>I used <Link href="https://phaser.io/">Phaser</Link> as the framework, while I don't have much experience with other frameworks I thought it was pretty great as a piece of free software</p>
-          <p>I also used <Link href="https://www.piskelapp.com/">Piskel</Link> for creating sprites and other assets and <Link href="https://www.mapeditor.org">Tiled</Link> for creating tile maps, both of which I would recommend</p>
+          <p>I used <Link href="https://phaser.io/">Phaser</Link> as the framework, while I don't have much experience with other frameworks I thought it was pretty great as a piece of free software.</p>
+          <p>I also used <Link href="https://www.piskelapp.com/">Piskel</Link> for creating sprites and other assets and <Link href="https://www.mapeditor.org">Tiled</Link> for creating tile maps, both of which I would recommend.</p>
           <Alert variant='warning'>WARNING: I made this as a Valentine's day present for my partner so it's a bit soppy. (Play at your own risk)</Alert>
           <Button href="/AdventureGame/index.html">Play</Button>
         </GameCard>
