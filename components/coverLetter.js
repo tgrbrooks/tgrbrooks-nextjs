@@ -86,7 +86,6 @@ class CoverLetter extends Component {
     render() {
         return (
             <>
-                <Alert key={1} variant="warning">An Alert</Alert>
                 <InputGroup className="mb-3">
                     <FormControl
                         placeholder="Enter job title"

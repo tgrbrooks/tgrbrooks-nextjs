@@ -29,7 +29,13 @@ class TimelineBox extends Component {
     }
 
     updateWindowDimensions() {
-        this.setState({ width: window.innerWidth, height: window.innerHeight });
+        let totalWidth = 0.39 * window.innerWidth
+        let totalHeight = 0.26 * window.innerWidth
+        if (this.state.width < 600) {
+            totalWidth = Math.min(600, window.innerWidth)
+            totalHeight = Math.min(400, window.innerWidth / 1.5)
+        }
+        this.setState({ width: totalWidth, height: totalHeight });
     }
 
     createAnime = () => {
@@ -61,8 +67,8 @@ class TimelineBox extends Component {
         // Expand the event window outwards, remove the left and right borders
         this.timeline.add({
             targets: this.event_ref.current,
-            scaleX: [1, 0.39 * this.state.width / 20.],
-            scaleY: [1, 0.26 * this.state.width / 20.],
+            scaleX: [1, this.state.width / 20],
+            scaleY: [1, this.state.height / 20.],
             borderTopWidth: ['5px', '1px'],
             borderBottomWidth: ['5px', '1px'],
             borderLeftWidth: ['5px', '0px'],

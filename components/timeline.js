@@ -14,7 +14,7 @@ export default function Timeline() {
         <TimelineEvent image={"Mantid.png"} date={"2015"} label={"Mantid Project - Intern"} />
         <TimelineEvent image={"Phd.png"} date={"2016 - 2020"} label={"University of Sheffield - PhD"} />
         <TimelineEvent image={"Postdoc.png"} date={"2020"} label={"University of Sheffield - Researcher"} />
-        <TimelineEvent image={"Phd.png"} date={"2020 -"} label={"Applied Blockchain - Software Developer"} />
+        <TimelineEvent image={"applied.png"} date={"2020 -"} label={"Applied Blockchain - Software Developer"} />
         <div className={styles.timelineEndLine}></div>
       </div>
     </div>

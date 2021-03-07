@@ -258,6 +258,12 @@
         {"name": "MATLAB", "base": false, "skill": 1}
        ]
       },
+      {"name": "Frameworks", 
+       "base": true, 
+       "children": [
+        {"name": "React", "base": false, "skill": 2}
+       ]
+      },
       {"name": "Style sheet", 
        "base": true, 
        "children": [
@@ -276,6 +282,13 @@
         {"name": "Geant4", "base": false, "skill": 2},
         {"name": "LArSoft", "base": false, "skill": 3},
         {"name": "MantidPlot", "base": false, "skill": 1}
+       ]
+      },
+      {"name": "Secure enclave", 
+       "base": true, 
+       "children": [
+        {"name": "Intel SGX", "base": false, "skill": 2},
+        {"name": "Conclave", "base": false, "skill": 1}
        ]
       },
       {"name": "Statistics/ML", 
@@ -309,6 +322,8 @@
        "children": [
         {"name": "Jenkins", "base": false, "skill": 3},
         {"name": "Travis", "base": false, "skill": 2},
+        {"name": "CircleCI", "base": false, "skill": 2},
+        {"name": "Docker", "base": false, "skill": 2},
         {"name": "CVMFS", "base": false, "skill": 3}
        ]
       },
@@ -317,6 +332,7 @@
        "children": [
         {"name": "QT", "base": false, "skill": 3},
         {"name": "Jekyll", "base": false, "skill": 2},
+        {"name": "Next.js", "base": false, "skill": 2},
         {"name": "Eclipse", "base": false, "skill": 1},
         {"name": "Phaser", "base": false, "skill": 2}
        ]

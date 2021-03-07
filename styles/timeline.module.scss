@@ -12,14 +12,14 @@
 // Wrapper for the lines and events
 .timelineBackground {
   position: absolute;
-  float: center;
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  height: 100%;
 }
 
 .timelineTitle {
-  position: absolute;
+  position: relative;
   top: 0;
   right: 0;
   left: 0;
@@ -36,26 +36,23 @@
   border-radius: 50%;
 }
 
+.timelineEventWrapper {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  display: flex;
+  justify-content: center;
+}
+
 .timelineLine {
+  position: absolute;
   background: #343a40;
   width: 10px;
   height: 400px;
-  float: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.timelineEndLine {
-  background: #343a40;
-  width: 10px;
-  height: 880px;
-  float: center;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .timelineEvent {
-  position: relative;
+  position: absolute;
   background: #FFF;
   background-position: center;
   background-repeat: no-repeat;
@@ -63,9 +60,7 @@
   border: 5px solid #343a40;
   width: 20px;
   height: 20px;
-  float: center;
-  margin-left: auto;
-  margin-right: auto;
+  top: 400px;
 }
 .timelineMask {
   position: absolute;
@@ -79,31 +74,44 @@
 // Wrapper for the dates and labels
 .timelineLabel {
   position: absolute;
-  width: 20%;
+  width: 15%;
+  margin-left: auto;
   color: #343a40;
   font-weight: 800;
   font-size: 1em;
   right: 0px;
+  top: 395px;
   text-align: right;
 }
 
 .timelineDate {
   position: absolute;
   color: #343a40;
-  width: 20%;
+  width: 15%;
+  margin-right: auto;
   font-weight: 800;
   font-size: 1em;
   left: 0px;
+  top: 395px;
   text-align: left;
 }
 
 @include media-query($on-palm) {
   .timelineLabel {
-    position: absolute;
-    top: 100px
+    top: 590px;
+    width: 45%;
   }
   .timelineDate {
-    position: absolute;
-    top: 100px
+    top: 590px;
+    width: 45%;
   }
+}
+
+.timelineEndLine {
+  background: #343a40;
+  width: 10px;
+  height: 800px;
+  float: center;
+  margin-left: auto;
+  margin-right: auto;
 }

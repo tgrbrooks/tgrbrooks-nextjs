@@ -20,12 +20,12 @@ class TimelineEvent extends Component {
 
     render() {
         return (
-            <>
-                <div className={styles.timelineLine} ></div>
+            <div className={styles.timelineEventWrapper}>
+                <div className={styles.timelineLine} />
                 <TimelineBox image={"/images/events/" + this.props.image} handler={this.showText}/>
                 <TimelineDate date={this.props.date} ref={this.dateRef} />
                 <TimelineLabel label={this.props.label} ref={this.labelRef} />
-            </>
+            </div>
         )
     }
 }

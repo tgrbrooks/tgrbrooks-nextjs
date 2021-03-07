@@ -35,8 +35,6 @@ class AnimatedTitle extends Component {
     }
 
     updateWindowSize(e) {
-        console.log(window.innerWidth)
-        console.log(this.props.width)
         // If props.width < 1 interpret as a percentage, otherwise interpret at set number of pixels
         let divWidth = Math.floor( Math.min(this.props.width, window.innerWidth) / this.props.ncols )
         if (this.props.width < 1) {

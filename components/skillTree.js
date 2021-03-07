@@ -5,6 +5,26 @@ import data from '../lib/skills'
 
 class SkillTree extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = { width: 0., height: 0. };
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+    }
+
+    componentDidMount() {
+        this.updateWindowDimensions();
+        window.addEventListener('resize', this.updateWindowDimensions);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+
+    updateWindowDimensions() {
+        let totalWidth = Math.min(600, window.innerWidth)
+        this.setState({ width: totalWidth, height: totalWidth });
+    }
+
     render() {
         const tooltipContent = <div className="sunburstTooltip" style="display: inline;
                                                                            position: absolute;
@@ -26,8 +46,8 @@ class SkillTree extends Component {
                     data={data}
                     scale="linear" // or exponential
                     keyId="skilltree"
-                    width="580"
-                    height="725"
+                    width={this.state.width}
+                    height={this.state.height}
                     tooltipContent={tooltipContent}
                 >
                 </Sunburst>
