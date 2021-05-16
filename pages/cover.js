@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import PostLayout from '../components/postLayout'
 import utilStyles from '../styles/utils.module.scss'
-import CoverLetter from '../components/coverLetter'
+import PostLayout from '../components/PostLayout'
+import CoverLetter from '../components/CoverLetter'
 import Alert from 'react-bootstrap/Alert'
 
 export default function CV() {

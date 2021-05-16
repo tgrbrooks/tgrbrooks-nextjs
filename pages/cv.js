@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import PageLayout from '../components/pageLayout'
 import utilStyles from '../styles/utils.module.scss'
-import Timeline from '../components/timeline'
-import SkillTree from '../components/skilltree'
+import Timeline from '../components/Timeline'
+import SkillTree from '../components/SkillTree'
+import PageLayout from '../components/PageLayout'
 
 export default function CV () {
   return (

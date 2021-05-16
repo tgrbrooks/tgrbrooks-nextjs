@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import PageLayout from '../components/pageLayout'
-import utilStyles from '../styles/utils.module.scss'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
-import GameCard from '../components/gameCard'
+import utilStyles from '../styles/utils.module.scss'
+import PageLayout from '../components/PageLayout'
+import GameCard from '../components/GameCard'
 
 export default function Games() {
   return (
