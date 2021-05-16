@@ -1,10 +1,10 @@
 import styles from '../styles/cover.module.scss'
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
-import { FormControl } from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap'
 
 class CoverLetter extends Component {
 
@@ -155,4 +155,4 @@ class CoverLetter extends Component {
   }
 }
 
-export default CoverLetter;
+export default CoverLetter

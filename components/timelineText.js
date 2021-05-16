@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react'
 import anime from 'animejs'
 
 const TimelineText = ({text, setTimeline}) => {
@@ -6,7 +6,7 @@ const TimelineText = ({text, setTimeline}) => {
   let tempTargetChars = []
   for (let [index, char] of text.split("").entries()) {
     tempTargetRefs.push(useRef())
-    tempTargetChars.push(<span aria-hidden="true" ref={tempTargetRefs[index]} key={index}>{char}</span>);
+    tempTargetChars.push(<span aria-hidden="true" ref={tempTargetRefs[index]} key={index}>{char}</span>)
   }
 
   const [targetRefs] = useState(tempTargetRefs)

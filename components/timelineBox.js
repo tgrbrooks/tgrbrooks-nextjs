@@ -1,9 +1,9 @@
 import styles from '../styles/timeline.module.scss'
-import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react'
 import anime from 'animejs'
 
 function useWindowSize() {
-  const [size, setSize] = useState([0, 0]);
+  const [size, setSize] = useState([0, 0])
   useEffect(() => {
     function updateSize() {
       let totalWidth = 0.39 * window.innerWidth
@@ -14,11 +14,11 @@ function useWindowSize() {
       }
       setSize([totalWidth, totalHeight]);
     }
-    window.addEventListener('resize', updateSize);
-    updateSize();
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
-  return size;
+    window.addEventListener('resize', updateSize)
+    updateSize()
+    return () => window.removeEventListener('resize', updateSize)
+  }, [])
+  return size
 }
 
 const TimelineBox = ({image, handler}) => {
@@ -75,7 +75,7 @@ const TimelineBox = ({image, handler}) => {
   }, [width, height])
 
   const handleClick = () => {
-    timeline.play();
+    timeline.play()
   }
 
   return (

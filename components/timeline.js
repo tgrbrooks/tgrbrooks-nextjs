@@ -1,4 +1,4 @@
-import TimelineEvent from './timelineEvent.js'
+import TimelineEvent from './TimelineEvent.js'
 import styles from '../styles/timeline.module.scss'
 
 const Timeline = () => {

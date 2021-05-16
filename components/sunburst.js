@@ -1,6 +1,6 @@
-import React from 'react';
-import * as d3 from 'd3v4';
-import * as utils from '../lib/sunburstUtils';
+import React from 'react'
+import * as d3 from 'd3v4'
+import * as utils from '../utils/sunburstUtils'
 import styles from '../styles/skilltree.module.scss'
 /**
  * Sunburst Chart React Stateless Component with the following allowable Props *

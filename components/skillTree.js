@@ -1,7 +1,7 @@
 import styles from '../styles/skilltree.module.scss'
-import React, { Component } from 'react';
-import Sunburst from './sunburst'
-import data from '../lib/skills'
+import React, { Component } from 'react'
+import Sunburst from './Sunburst'
+import data from '../utils/skills'
 
 class SkillTree extends Component {
 

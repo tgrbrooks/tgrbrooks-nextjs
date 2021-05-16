@@ -1,7 +1,7 @@
 import styles from '../styles/layout.module.scss'
 import Link from 'next/link'
-import AnimatedTitle from './pageTitle.js'
-import Layout from './layout.js'
+import AnimatedTitle from './PageTitle.js'
+import Layout from './Layout.js'
 
 const PageLayout = ({ children, home, title, type }) => {
   return (

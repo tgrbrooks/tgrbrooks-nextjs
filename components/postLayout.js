@@ -1,7 +1,6 @@
 import styles from '../styles/layout.module.scss'
 import Link from 'next/link'
-import AnimatedTitle from './pageTitle.js'
-import Layout from './layout.js'
+import Layout from './Layout.js'
 
 const PostLayout = ({ children, home }) => {
   return (
