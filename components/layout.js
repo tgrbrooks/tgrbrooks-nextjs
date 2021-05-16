@@ -6,7 +6,7 @@ import Footer from './footer.js'
 export const name = "I'm Tom Brooks"
 export const siteTitle = 'Tom Brooks | Personal Website'
 
-export default function Layout({ children, home }) {
+const Layout = ({ children }) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -28,3 +28,5 @@ export default function Layout({ children, home }) {
     </div>
   )
 }
+
+export default Layout

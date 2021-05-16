@@ -1,7 +1,7 @@
 import TimelineEvent from './timelineEvent.js'
 import styles from '../styles/timeline.module.scss'
 
-export default function Timeline() {
+const Timeline = () => {
   return (
     <div className={styles.timeline}>
       <div className={styles.timelineBackground}>
@@ -20,3 +20,5 @@ export default function Timeline() {
     </div>
   )
 }
+
+export default Timeline

@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import PostLayout from '../components/postLayout'
 import utilStyles from '../styles/utils.module.scss'
 import CoverLetter from '../components/coverLetter'

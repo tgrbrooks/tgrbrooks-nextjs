@@ -1,33 +1,33 @@
 import styles from '../styles/timeline.module.scss'
-import React, { Component } from 'react';
-import TimelineDate from './timelineDate'
-import TimelineLabel from './timelineLabel'
+import React, { useState } from 'react';
+import TimelineText from './timelineText'
 import TimelineBox from './timelineBox'
 
-class TimelineEvent extends Component {
+const TimelineEvent = ({image, date, label}) => {
+  const [dateTimeline, setDateTimeline] = useState()
+  const [labelTimeline, setLabelTimeline] = useState()
+  const [visible, setVisible] = useState(false)
 
-    constructor(props) {
-        super(props);
-        this.dateRef = React.createRef();
-        this.labelRef = React.createRef();
-        this.showText = this.showText.bind(this);
+  const showText = () => {
+    if (visible === false) {
+      dateTimeline.play()
+      labelTimeline.play()
+      setVisible(true)
     }
+  }
 
-    showText() {
-        this.labelRef.current.play();
-        this.dateRef.current.play();
-    }
-
-    render() {
-        return (
-            <div className={styles.timelineEventWrapper}>
-                <div className={styles.timelineLine} />
-                <TimelineBox image={"/images/events/" + this.props.image} handler={this.showText}/>
-                <TimelineDate date={this.props.date} ref={this.dateRef} />
-                <TimelineLabel label={this.props.label} ref={this.labelRef} />
-            </div>
-        )
-    }
+  return (
+    <div className={styles.timelineEventWrapper}>
+      <div className={styles.timelineLine} />
+      <TimelineBox image={"/images/events/" + image} handler={showText} />
+      <div className={styles.timelineDate}>
+        <TimelineText text={date} setTimeline={setDateTimeline} />
+      </div>
+      <div className={styles.timelineLabel}>
+        <TimelineText text={label} setTimeline={setLabelTimeline} />
+      </div>
+    </div>
+  )
 }
 
-export default TimelineEvent;
+export default TimelineEvent

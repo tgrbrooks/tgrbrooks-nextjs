@@ -1,65 +1,41 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import anime from 'animejs'
 
-const PREFIX = '__anime__';
+const TimelineText = ({text, setTimeline}) => {
+  let tempTargetRefs = []
+  let tempTargetChars = []
+  for (let [index, char] of text.split("").entries()) {
+    tempTargetRefs.push(useRef())
+    tempTargetChars.push(<span aria-hidden="true" ref={tempTargetRefs[index]} key={index}>{char}</span>);
+  }
 
-class TimelineText extends Component {
+  const [targetRefs] = useState(tempTargetRefs)
+  const [targetChars] = useState(tempTargetChars)
 
-    constructor(props) {
-        super(props);
-        this.state = { show: false, visible: false }
-        this.targets = [];
-        this.targetRefs = [];
-        this.targetChars = [];
-        for (let [index, char] of props.text.split("").entries()) {
-            this.targetRefs.push(React.createRef());
-            this.targetChars.push(<span aria-hidden="true" ref={this.targetRefs[index]} key={index}>{char}</span>);
-        }
+  useEffect(() => {
+    if (anime != undefined) {
+      anime.remove(targetRefs.map(x => x.current))
     }
 
-    componentDidMount() {
-        this.createAnime();
-    }
+    let timeline = anime.timeline({
+      autoplay: false,
+      loop: false
+    })
+    timeline.add({
+      targets: targetRefs.map(x => x.current),
+      opacity: [0, 1],
+      easing: "easeInOutQuad",
+      duration: 2250,
+      delay: (el, i) => 75 * (i + 1)
+    });
+    setTimeline(timeline)
+  }, [targetChars])
 
-    createAnime = () => {
-        if (this.anime != undefined) {
-            anime.remove(this.targets)
-        }
-
-        this.targets = [];
-        for (let ref of this.targetRefs) {
-            if (ref.current) {
-                this.targets.push(ref.current);
-            }
-        }
-
-        this.timeline = anime.timeline({
-            autoplay: false,
-            loop: false
-        })
-        this.timeline.add({
-            targets: this.targets,
-            opacity: [0, 1],
-            easing: "easeInOutQuad",
-            duration: 2250,
-            delay: (el, i) => 75 * (i + 1)
-        });
-    }
-
-    play = () => {
-        if (this.state.visible == false) {
-            this.timeline.play();
-            this.setState({ visible: true });
-        }
-    }
-
-    render() {
-        return (
-            <span aria-label={this.props.text}>
-                {this.targetChars}
-            </span>
-        )
-    }
+  return (
+    <span aria-label={text}>
+      {targetChars}
+    </span>
+  )
 }
 
-export default TimelineText;
+export default TimelineText

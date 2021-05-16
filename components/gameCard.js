@@ -2,7 +2,7 @@ import Card from 'react-bootstrap/Card'
 import Carousel from 'react-bootstrap/Carousel'
 import Button from 'react-bootstrap/Button'
 
-export default function GameCard({ children, title, images, repo, status }) {
+const GameCard = ({ children, title, images, repo, status }) => {
   var carouselItems = []
   images.forEach((image, i) => carouselItems.push(<Carousel.Item key={"gameCard_"+title+"_"+i}>
     <img
@@ -27,3 +27,5 @@ export default function GameCard({ children, title, images, repo, status }) {
     </Card>
   )
 }
+
+export default GameCard

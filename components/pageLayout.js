@@ -3,7 +3,7 @@ import Link from 'next/link'
 import AnimatedTitle from './pageTitle.js'
 import Layout from './layout.js'
 
-export default function PageLayout({ children, home, title, type }) {
+const PageLayout = ({ children, home, title, type }) => {
   return (
     <Layout home>
       <AnimatedTitle title={title} type={type} ncols={50} nrows={15} width={0.6} minWidth={600}></AnimatedTitle>
@@ -20,3 +20,5 @@ export default function PageLayout({ children, home, title, type }) {
     </Layout>
   )
 }
+
+export default PageLayout

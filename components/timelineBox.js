@@ -1,107 +1,91 @@
 import styles from '../styles/timeline.module.scss'
-import React, { Component } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import anime from 'animejs'
 
-const PREFIX = '__anime__';
-
-class TimelineBox extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = { playOpen: false, width: 0., height: 0. };
-        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-        this.event_ref = React.createRef();
-        this.mask_ref = React.createRef();
-        this.handleClick = this.handleClick.bind(this);
+function useWindowSize() {
+  const [size, setSize] = useState([0, 0]);
+  useEffect(() => {
+    function updateSize() {
+      let totalWidth = 0.39 * window.innerWidth
+      let totalHeight = 0.26 * window.innerWidth
+      if (window.innerWidth < 600) {
+        totalWidth = Math.min(600, window.innerWidth)
+        totalHeight = Math.min(400, window.innerWidth / 1.5)
+      }
+      setSize([totalWidth, totalHeight]);
     }
-
-    componentDidMount() {
-        this.updateWindowDimensions();
-        window.addEventListener('resize', this.updateWindowDimensions);
-    }
-
-    componentDidUpdate() {
-        this.createAnime();
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.updateWindowDimensions);
-    }
-
-    updateWindowDimensions() {
-        let totalWidth = 0.39 * window.innerWidth
-        let totalHeight = 0.26 * window.innerWidth
-        if (this.state.width < 600) {
-            totalWidth = Math.min(600, window.innerWidth)
-            totalHeight = Math.min(400, window.innerWidth / 1.5)
-        }
-        this.setState({ width: totalWidth, height: totalHeight });
-    }
-
-    createAnime = () => {
-        if (this.timeline != undefined) {
-            anime.remove(this.event_ref.current)
-            anime.remove(this.mask_ref.current)
-        }
-
-        // Event expansion animation: fill with colour, expand out, hide mask
-        this.timeline = anime.timeline({
-            targets: this.event_ref.current,
-            easing: 'easeInOutSine',
-            direction: 'normal',
-            zIndex: 10,
-            loop: false,
-            autoplay: false,
-            // Play in reverse when clicked twice to hide
-            complete: function (anim) {
-                anim.direction = (anim.direction == 'normal') ? 'reverse' : 'normal';
-            }
-        })
-        // Fill the background of the mask
-        this.timeline.add({
-            targets: this.mask_ref.current,
-            backgroundColor: "#343a40",
-            opacity: 1,
-            duration: 400
-        })
-        // Expand the event window outwards, remove the left and right borders
-        this.timeline.add({
-            targets: this.event_ref.current,
-            scaleX: [1, this.state.width / 20],
-            scaleY: [1, this.state.height / 20.],
-            borderTopWidth: ['5px', '1px'],
-            borderBottomWidth: ['5px', '1px'],
-            borderLeftWidth: ['5px', '0px'],
-            borderRightWidth: ['5px', '0px'],
-            duration: 700
-        })
-        // Hide the mask that was covering the background image
-        this.timeline.add({
-            targets: this.mask_ref.current,
-            backgroundColor: "#FFF",
-            opacity: 0,
-            duration: 400
-        })
-        if (this.state.playOpen) {
-            this.timeline.play();
-            //this.setState({ playOpen: false });
-        }
-    };
-
-    handleClick() {
-        this.setState({ playOpen: !this.state.playOpen });
-    }
-
-    render() {
-        return (
-            <div ref={this.event_ref} key={"event"} className={styles.timelineEvent}
-                 style={{ backgroundImage: `url(${this.props.image})` }}
-                 onClick={this.handleClick}
-                 onMouseEnter={this.props.handler}>
-                <div ref={this.mask_ref} key={"mask"} className={styles.timelineMask} />
-            </div>
-        )
-    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+  return size;
 }
 
-export default TimelineBox;
+const TimelineBox = ({image, handler}) => {
+  const [width, height] = useWindowSize()
+  const [timeline, setTimeline] = useState()
+  const eventRef = useRef()
+  const maskRef = useRef()
+
+  useEffect(() => {
+    if (timeline != undefined) {
+      anime.remove(eventRef.current)
+      anime.remove(maskRef.current)
+    }
+
+    // Event expansion animation: fill with colour, expand out, hide mask
+    let tempTimeline = anime.timeline({
+      targets: eventRef.current,
+      easing: 'easeInOutSine',
+      direction: 'normal',
+      zIndex: 10,
+      loop: false,
+      autoplay: false,
+      // Play in reverse when clicked twice to hide
+      complete: function (anim) {
+        anim.direction = (anim.direction == 'normal') ? 'reverse' : 'normal';
+      }
+    })
+    // Fill the background of the mask
+    tempTimeline.add({
+      targets: maskRef.current,
+      backgroundColor: "#343a40",
+      opacity: 1,
+      duration: 400
+    })
+    // Expand the event window outwards, remove the left and right borders
+    tempTimeline.add({
+      targets: eventRef.current,
+      scaleX: [1, width / 20],
+      scaleY: [1, height / 20.],
+      borderTopWidth: ['5px', '1px'],
+      borderBottomWidth: ['5px', '1px'],
+      borderLeftWidth: ['5px', '0px'],
+      borderRightWidth: ['5px', '0px'],
+      duration: 700
+    })
+    // Hide the mask that was covering the background image
+    tempTimeline.add({
+      targets: maskRef.current,
+      backgroundColor: "#FFF",
+      opacity: 0,
+      duration: 400
+    })
+    setTimeline(tempTimeline)
+  }, [width, height])
+
+  const handleClick = () => {
+    timeline.play();
+  }
+
+  return (
+    <div ref={eventRef} key={"event"} className={styles.timelineEvent}
+      style={{ backgroundImage: `url(${image})` }}
+      onClick={handleClick}
+      onMouseEnter={handler}>
+      <div ref={maskRef} key={"mask"} className={styles.timelineMask} />
+    </div>
+  )
+}
+
+export default TimelineBox

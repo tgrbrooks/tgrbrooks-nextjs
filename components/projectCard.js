@@ -1,7 +1,7 @@
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
-export default function ProjectCard({ children, title, image, repo, status }) {
+const ProjectCard = ({ children, title, image, repo, status }) => {
   return (
     <Card className="mb-3" style={{ minWidth: '20rem' }}>
       <Card.Img variant="top" src={'/images/projects/' + image} />
@@ -16,3 +16,5 @@ export default function ProjectCard({ children, title, image, repo, status }) {
     </Card>
   )
 }
+
+export default ProjectCard
