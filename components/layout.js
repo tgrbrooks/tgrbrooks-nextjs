@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/layout.module.scss'
-import Header from './Header.js'
-import Footer from './Footer.js'
+import Header from './Header'
+import Footer from './Footer'
 
 export const name = "I'm Tom Brooks"
 export const siteTitle = 'Tom Brooks | Personal Website'
