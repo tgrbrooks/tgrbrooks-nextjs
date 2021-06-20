@@ -1,7 +1,7 @@
 import styles from '../styles/skilltree.module.scss'
 import React, { useState, useEffect } from 'react'
-import Sunburst from './Sunburst'
-import data from '../utils/skills'
+import Sunburst from './Sunburst.js'
+import data from '../utils/skills.js'
 
 function useWindowSize() {
   const [size, setSize] = useState([0, 0])

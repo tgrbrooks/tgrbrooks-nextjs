@@ -1,7 +1,7 @@
 import utilStyles from '../styles/utils.module.scss'
 import React, { Component } from 'react'
 import anime from 'animejs'
-import { phraseToArray } from '../utils/letters'
+import { phraseToArray } from '../utils/letters.js'
 
 const PREFIX = '__anime__';
 

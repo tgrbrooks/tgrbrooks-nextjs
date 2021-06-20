@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import * as d3 from 'd3v4'
-import * as utils from '../utils/sunburstUtils'
+import * as utils from '../utils/sunburstUtils.js'
 import styles from '../styles/skilltree.module.scss'
 
 const Sunburst = ({ data, width, height, onSelect, tooltipContent, keyId }) => {

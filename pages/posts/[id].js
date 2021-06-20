@@ -1,7 +1,7 @@
-import PostLayout from '../../components/PostLayout'
+import PostLayout from '../../components/PostLayout.js'
 import Head from 'next/head'
-import { getAllPostIds, getPostData } from '../../utils/posts'
-import Date from '../../components/Date'
+import { getAllPostIds, getPostData } from '../../utils/posts.js'
+import Date from '../../components/Date.js'
 import utilStyles from '../../styles/utils.module.scss'
 
 export async function getStaticProps({ params }) {

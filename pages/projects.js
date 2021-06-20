@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import utilStyles from '../styles/utils.module.scss'
-import PageLayout from '../components/PageLayout'
+import PageLayout from '../components/PageLayout.js'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Button from 'react-bootstrap/Button'
-import ProjectCard from '../components/projectCard'
+import ProjectCard from '../components/projectCard.js'
 
 export default function Projects() {
   return (

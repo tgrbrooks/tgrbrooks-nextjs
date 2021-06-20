@@ -2,10 +2,10 @@ import Head from 'next/head'
 import Link from 'next/link'
 import utilStyles from '../styles/utils.module.scss'
 import styles from '../styles/layout.module.scss'
-import { siteTitle, name } from '../components/Layout'
-import PageLayout from '../components/PageLayout'
-import Date from '../components/Date'
-import { getSortedPostsData } from '../utils/posts'
+import { siteTitle, name } from '../components/Layout.js'
+import PageLayout from '../components/PageLayout.js'
+import Date from '../components/Date.js'
+import { getSortedPostsData } from '../utils/posts.js'
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData()

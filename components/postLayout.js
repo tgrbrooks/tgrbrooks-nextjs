@@ -1,6 +1,6 @@
 import styles from '../styles/layout.module.scss'
 import Link from 'next/link'
-import Layout from './Layout'
+import Layout from './Layout.js'
 
 const PostLayout = ({ children, home }) => {
   return (

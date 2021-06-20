@@ -1,7 +1,7 @@
 import styles from '../styles/timeline.module.scss'
 import React, { useState } from 'react'
-import TimelineText from './TimelineText'
-import TimelineBox from './TimelineBox'
+import TimelineText from './TimelineText.js'
+import TimelineBox from './TimelineBox.js'
 
 const TimelineEvent = ({image, date, label}) => {
   const [dateTimeline, setDateTimeline] = useState()
