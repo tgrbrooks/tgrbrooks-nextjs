@@ -4,7 +4,7 @@ import utilStyles from '../styles/utils.module.scss'
 import PageLayout from '../components/PageLayout.js'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Button from 'react-bootstrap/Button'
-import ProjectCard from '../components/projectCard.js'
+import ProjectCard from '../components/ProjectCard.js'
 
 export default function Projects() {
   return (
