@@ -142,6 +142,7 @@ const AnimatedTitle = ({title, ncols, nrows, width, minWidth, type}) => {
   const [startAnimation, setStartAnimation] = useState()
   const [waveAnimation, setWaveAnimation] = useState()
   const [index, setIndex] = useState(null)
+  const [loading, setLoading] = useState(true)
   const grid = [ncols, nrows]
   const targetRefs = React.useRef([])
   let indices = []
@@ -176,6 +177,7 @@ const AnimatedTitle = ({title, ncols, nrows, width, minWidth, type}) => {
   }, [targets, colTargets])
   useEffect(() => {
     if(startAnimation){
+      setLoading(false)
       startAnimation.play()
     }
   }, [startAnimation])
@@ -200,7 +202,7 @@ const AnimatedTitle = ({title, ncols, nrows, width, minWidth, type}) => {
             key={`${PREFIX}${i}`}
             className={utilStyles.staggerVisualizerDiv}
             onClick={() => {setIndex(i)}}
-            style={{ width: windowWidth/ncols, height: windowWidth/ncols }}
+            style={{ width: windowWidth/ncols, height: windowWidth/ncols, opacity: loading ? 0 : 1 }}
           />
         })}
       </div >
