@@ -3,7 +3,7 @@ import styles from '../styles/footer.module.scss'
 
 const Footer = () => {
   return (
-    <footer className={[styles.siteFooter, "h-card", "bg-dark"].join(' ')}>
+    <footer className={[styles.siteFooter, "h-card"].join(' ')}>
 
       <div className={styles.wrapper}>
 

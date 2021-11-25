@@ -26,14 +26,15 @@
 }
 
 .siteFooter {
-  border-top: 1px solid $grey-color-light;
+  border-top: 0px solid $grey-color-light;
   padding: $spacing-unit/4 0;
+  background-color: $header-color
 }
 
 .footerColWrapper {
   @include relative-font-size(0.9375);
   width: 100%;
-  color: $grey-color;
+  color: $text-color;
   margin-left: $spacing-unit / 2;
   @extend %clearfix;
 }

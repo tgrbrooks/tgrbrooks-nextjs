@@ -3,7 +3,6 @@ import styles from '../styles/layout.module.scss'
 import Header from './Header.js'
 import Footer from './Footer.js'
 
-export const name = "I'm Tom Brooks"
 export const siteTitle = 'Tom Brooks | Personal Website'
 
 const Layout = ({ children }) => {

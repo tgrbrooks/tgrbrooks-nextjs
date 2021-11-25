@@ -6,7 +6,7 @@ import Layout from './Layout.js'
 const PageLayout = ({ children, home, title, type }) => {
   return (
     <Layout home>
-      <AnimatedTitle title={title} type={type} ncols={50} nrows={15} width={0.6} minWidth={600}></AnimatedTitle>
+      <AnimatedTitle title={title} type={type} ncols={50} nrows={12} width={0.6} minWidth={600}></AnimatedTitle>
       <div className={styles.innerContainer}>
       <main>{children}</main>
       {!home && (

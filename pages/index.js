@@ -1,22 +1,10 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import utilStyles from '../styles/utils.module.scss'
 import styles from '../styles/layout.module.scss'
-import { siteTitle, name } from '../components/Layout.js'
+import { siteTitle } from '../components/Layout.js'
 import PageLayout from '../components/PageLayout.js'
-import Date from '../components/Date.js'
-import { getSortedPostsData } from '../utils/posts.js'
 
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
-  return {
-    props: {
-      allPostsData
-    }
-  }
-}
-
-export default function Home({ allPostsData }) {
+export default function Home() {
   return (
     <PageLayout home title="Hello!" type={1}>
       <Head>
@@ -27,33 +15,22 @@ export default function Home({ allPostsData }) {
           <img
             src="/images/profile.jpg"
             className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-            alt={name}
           />
-          <h1 className={utilStyles.heading2Xl}>{name}</h1>
+          <h1 className={utilStyles.heading2Xl}>{"Tom Brooks"}</h1>
+          <h1 className={utilStyles.headingXl}>{"Software Engineer"}</h1>
+          <h1 className={utilStyles.headingLg}>{"Physics | Machine Learning | Cryptography"}</h1>
         </>
       </header>
-      <section className={utilStyles.headingMd}>
-        <p>Welcome to my website!</p>
+      <section className={`${utilStyles.headingMd} ${styles.header} ${utilStyles.padding2rem}`}>
         <p>
-          This is mostly just a space for me to try to keep all of my thoughts in one place.
-          It's also where I experiment with new Javascript libraries and tools, so there's a good chance some parts of the site might be broken.
+        Software engineer working on cutting edge confidential computing and blockchain applications.
         </p>
-      </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
+        <p>
+        PhD in high energy physics writing software and designing algorithms for reconstructing particle interactions in giant detectors.
+        </p>
+        <p>
+        A keen interest in machine learning and artificial intelligence, both in the statistical fundamentals and applications to scientific and ethical problems. 
+        </p>
       </section>
     </PageLayout>
   )

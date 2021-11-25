@@ -18,7 +18,7 @@ export default function About() {
         <p>As part of my work I spent time as a visiting research scholar at the Fermi National Accelerator Laboratory, building a 100 ton particle detector and designing algorithms for reconstructing interactions.</p>
         <p>After my PhD I had a brief spell with the WATCHMAN collaboration as a postdoctoral researcher, developing a system of remote nuclear reactor detection for non proliferation.</p>
         <p>I'm currently working as a C++ engineer with Applied Blockchain, specialising in privacy preserving secure enclave technology.</p>
-        <p>You can find out more about my background on my <Link href="cv"><a>CV</a></Link> page, and more about things I've done on the <Link href="projects"><a>projects</a></Link> and <Link href="games"><a>games</a></Link> pages.</p>
+        <p>You can find out more about my background on my <Link href="/cv"><a>CV</a></Link> page, and more about things I've done on the <Link href="/projects"><a>projects</a></Link> and <Link href="/games"><a>games</a></Link> pages.</p>
       </section>
       <br/>
       <CardDeck>

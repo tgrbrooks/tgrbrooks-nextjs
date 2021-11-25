@@ -1,13 +1,16 @@
+@import "defaults";
+
 .container {
     max-width: auto;
     padding: 0 0rem;
     margin: 0rem 0rem;
+    background-color: $background-color;
   }
 
   .innerContainer {
     max-width: 50rem;
     padding: 0 1rem;
-    margin: 3rem auto 6rem;
+    margin: 0rem auto 6rem;
   }
   
   .header {
@@ -24,9 +27,14 @@
   .headerHomeImage {
     width: 8rem;
     height: 8rem;
+    margin-bottom: 1rem;
   }
   
   .backToHome {
     margin: 3rem 0 0;
+  }
+
+  .navbar {
+    background-color: $header-color;
   }
   

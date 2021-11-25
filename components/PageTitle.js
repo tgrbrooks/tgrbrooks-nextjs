@@ -87,8 +87,8 @@ function createStartAnime(type, targets, colTargets, grid) {
   }
   timeline.add({
     targets: colTargets,
-    backgroundColor: "#FFF",
-    borderColor: "#343a40",
+    backgroundColor: "#F5F5F5",
+    borderColor: "#2A4B5B",
     delay: anime.stagger(0, { grid: grid, from: 'center' }),
     easing: 'easeInOutSine'
   })
