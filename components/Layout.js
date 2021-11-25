@@ -8,6 +8,11 @@ export const siteTitle = 'Tom Brooks | Personal Website'
 const Layout = ({ children }) => {
   return (
     <div className={styles.container}>
+      <style jsx global>{`
+      html {
+        background-color: #1F2933;
+      }
+      `}</style>
       <Head>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <meta
