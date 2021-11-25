@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import utilStyles from '../styles/utils.module.scss'
-import { siteTitle } from '../components/Layout.js'
 import PageLayout from '../components/PageLayout.js'
 import Date from '../components/Date.js'
 import { getSortedPostsData } from '../utils/posts.js'
@@ -19,7 +18,7 @@ export default function Blog({ allPostsData }) {
   return (
     <PageLayout home title="Blog" type={1}>
       <Head>
-        <title>{siteTitle}</title>
+        <title>Blog | Tom Brooks</title>
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <ul className={utilStyles.list}>

@@ -38,3 +38,21 @@
     background-color: $header-color;
   }
   
+  .card {
+    width: 18rem;
+    background-color: $header-color;
+  }
+
+  .cardHeader {
+    text-align: center;
+    color: $text-color;
+  }
+
+  .cardBody {
+    background-color: $background-color;
+    color: $text-color;
+  }
+  .cardBody:hover {
+    background-color: $header-color;
+    color: $text-color;
+  }
