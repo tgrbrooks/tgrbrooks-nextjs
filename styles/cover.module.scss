@@ -1,3 +1,5 @@
+@import "defaults";
+
 .coverToggle {
   margin-left: auto;
   margin-right: auto;
@@ -13,6 +15,10 @@
   margin-right: auto;
   margin-top: 40px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgb(228, 225, 225);
+  color: black;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: medium;
 }
 
 .coverAddress {
@@ -20,11 +26,11 @@
 }
 .addressContent {
   float: right;
-  //display: none;
 }
 .coverDate {
   width: 100%;
   float: right;
+  padding-bottom: 1rem;
 }
 .dateContent {
   float: right;
@@ -32,9 +38,11 @@
 .coverStart {
   width: 100%;
   float: left;
+  padding-bottom: 1rem;
 }
 .letterContent {
   float: left;
+  padding-bottom: 1rem;
 }
 .coverEnd {
   width: 100%;
