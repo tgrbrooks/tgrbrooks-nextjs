@@ -16,6 +16,7 @@ export async function getStaticProps() {
 }
 
 export default function Blog({ allPostsData }) {
+  const tags = [...new Set(allPostsData.map(({tag}) => {return tag}))]
   return (
     <PageLayout home title="Blog" type={1}>
       <Head>
@@ -24,7 +25,7 @@ export default function Blog({ allPostsData }) {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <div className={utilStyles.headingXl}>Tags</div>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ tag }) => (
+          {tags.map((tag) => (
             <li className={utilStyles.listItem} key={tag}>
               <Link href={`/posts/tags/${tag}`}>
                 <a className={styles.link}>{tag}</a>
