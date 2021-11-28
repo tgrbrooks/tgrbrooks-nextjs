@@ -1,3 +1,5 @@
+@import "defaults";
+
 pre[class*="language-"],
 code[class*="language-"] {
 	color: #9cdcfe;
@@ -37,7 +39,7 @@ pre[class*="language-"] {
   padding-left: 3em;
 	margin: .5em 0;
 	overflow: auto;
-	background-color: #292828;
+	background-color: $header-color;
   border-radius: 10px;
 }
 
@@ -84,7 +86,6 @@ pre[class*="language-"] {
 .language-css .token.string,
 .style .token.string {
 	color: #d4d4d4;
-	background: #1e1e1e;
 }
 
 .token.atrule,
