@@ -36,6 +36,17 @@ export function getSortedPostsData() {
   })
 }
 
+export function getSortedPostsDataByTag(tag) {
+  const allPostData = getSortedPostsData()
+  let tagPostData = []
+  allPostData.map((data) => {
+    if (data.tag === tag) {
+      tagPostData.push(data)
+    }
+  })
+  return tagPostData
+}
+
 export function getAllPostIds() {
     const fileNames = fs.readdirSync(postsDirectory)
   
@@ -60,7 +71,21 @@ export function getAllPostIds() {
       }
     })
   }
-  
+
+  export function getAllPostTags() {
+    const allPostData = getSortedPostsData()
+    const tags = new Set(allPostData.map((data) => {return data.tag}))
+    let paramList = [] 
+    tags.forEach((tag) => {
+      paramList.push( {
+        params: {
+          tag: tag
+        }
+      })
+    })
+    return paramList
+  }
+
   export async function getPostData(id) {
     const fullPath = path.join(postsDirectory, `${id}.md`)
     const fileContents = fs.readFileSync(fullPath, 'utf8')

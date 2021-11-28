@@ -9,8 +9,8 @@ const PostLayout = ({ children, home }) => {
         <main>{children}</main>
         {!home && (
           <div className={styles.backToHome}>
-            <Link href="/">
-              <a className={styles.link}>← Back to home</a>
+            <Link href="/blog">
+              <a className={styles.link}>← Back to blog</a>
             </Link>
           </div>
         )}

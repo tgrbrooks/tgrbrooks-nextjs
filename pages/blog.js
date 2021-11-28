@@ -22,8 +22,21 @@ export default function Blog({ allPostsData }) {
         <title>Blog | Tom Brooks</title>
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <div className={utilStyles.headingXl}>Tags</div>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {allPostsData.map(({ tag }) => (
+            <li className={utilStyles.listItem} key={tag}>
+              <Link href={`/posts/tags/${tag}`}>
+                <a className={styles.link}>{tag}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <div className={utilStyles.headingXl}>Posts</div>
+        <ul className={utilStyles.list}>
+          {allPostsData.map(({ id, date, title, tag }) => (
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>
                 <a className={styles.link}>{title}</a>
@@ -31,6 +44,7 @@ export default function Blog({ allPostsData }) {
               <br />
               <small className={utilStyles.lightText}>
                 <Date dateString={date} />
+                <div>{"Tag: "+tag}</div>
               </small>
             </li>
           ))}
