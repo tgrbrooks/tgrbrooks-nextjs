@@ -167,7 +167,7 @@ export default {
      ]
     },
     {
-     "name": "Computing",
+     "name": "Computer Science",
      "base": true,
      "children": [
       {"name": "Numerical analysis", "base": false, "size": 3},
@@ -249,11 +249,19 @@ export default {
         {"name": "Java", "base": false, "size": 1}
        ]
       },
+      {"name": "Frameworks", 
+       "base": true, 
+       "children": [
+        {"name": "Next.js", "base": false, "size": 2},
+        {"name": "React", "base": false, "size": 2}
+       ]
+      },
       {"name": "Interpreted", 
        "base": true, 
        "children": [
         {"name": "Python", "base": false, "size": 3},
         {"name": "Javascript", "base": false, "size": 2},
+        {"name": "TypeScript", "base": false, "size": 2},
         {"name": "Mathematica", "base": false, "size": 1},
         {"name": "MATLAB", "base": false, "size": 1}
        ]
@@ -261,7 +269,15 @@ export default {
       {"name": "Style sheet", 
        "base": true, 
        "children": [
-        {"name": "CSS", "base": false, "size": 2}
+        {"name": "CSS", "base": false, "size": 2},
+        {"name": "SCSS", "base": false, "size": 2}
+       ]
+      },
+      {"name": "Smart contract", 
+       "base": true, 
+       "children": [
+        {"name": "Solidity", "base": false, "size": 1},
+        {"name": "TEAL", "base": false, "size": 1}
        ]
       }
      ]
@@ -276,6 +292,13 @@ export default {
         {"name": "Geant4", "base": false, "size": 2},
         {"name": "LArSoft", "base": false, "size": 3},
         {"name": "MantidPlot", "base": false, "size": 1}
+       ]
+      },
+      {"name": "Secure enclave", 
+       "base": true, 
+       "children": [
+        {"name": "Intel SGX", "base": false, "size": 2},
+        {"name": "Conclave", "base": false, "size": 1}
        ]
       },
       {"name": "Statistics/ML", 
@@ -309,6 +332,10 @@ export default {
        "children": [
         {"name": "Jenkins", "base": false, "size": 3},
         {"name": "Travis", "base": false, "size": 2},
+        {"name": "CircleCI", "base": false, "size": 3},
+        {"name": "Docker", "base": false, "size": 2},
+        {"name": "GoogleTest", "base": false, "size": 2},
+        {"name": "Jest", "base": false, "size": 2},
         {"name": "CVMFS", "base": false, "size": 3}
        ]
       },
