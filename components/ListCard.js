@@ -11,7 +11,7 @@ const ListCard = ({ title, items }) => {
     </ListGroup.Item>)
   })}
   return (
-    <Card className={styles.card}>
+    <Card className={styles.listCard}>
       <Card.Header className={styles.cardHeader}><b>{title}</b></Card.Header>
       <ListGroup variant="flush">
         {listItems}

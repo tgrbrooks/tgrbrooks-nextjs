@@ -13,13 +13,13 @@ const GameCard = ({ children, title, images, repo, status }) => {
     />
   </Carousel.Item>))
   return (
-    <Card className={`${styles.gameCard} mb-3`}>
+    <Card className={`${styles.gameCard}`}>
       <Carousel>
         {carouselItems}
       </Carousel>
       <Card.Body className={`d-flex flex-column ${styles.cardBody}`}>
         <Card.Title className={styles.cardHeader}>{title}</Card.Title>
-        <Card.Text>
+        <Card.Text as="div" style={{"paddingBottom": "1rem"}}>
           {children}
         </Card.Text>
         <DarkButton link={'https://github.com/tgrbrooks/' + repo} name={"GitHub"} />
