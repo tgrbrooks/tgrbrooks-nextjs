@@ -1,18 +1,19 @@
 import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
+import DarkButton from './UI/DarkButton'
+import styles from '../styles/layout.module.scss'
 
 const ProjectCard = ({ children, title, image, repo, status }) => {
   return (
-    <Card className="mb-3" style={{ minWidth: '20rem' }}>
+    <Card className={`mb-3 ${styles.projectCard}`}>
       <Card.Img variant="top" src={'/images/projects/' + image} />
-      <Card.Body className="d-flex flex-column">
-        <Card.Title className="text-muted">{title}</Card.Title>
+      <Card.Body className={`d-flex flex-column ${styles.cardBody}`}>
+        <Card.Title className={styles.cardHeader}>{title}</Card.Title>
         <Card.Text>
           {children}
         </Card.Text>
-        <Button className="mt-auto" href={'https://github.com/tgrbrooks/' + repo}>GitHub</Button>
+        <DarkButton link={'https://github.com/tgrbrooks/' + repo} name="GitHub" />
       </Card.Body>
-      <Card.Footer className="text-muted">{status}</Card.Footer>
+      <Card.Footer className={styles.cardFooter}>{status}</Card.Footer>
     </Card>
   )
 }
