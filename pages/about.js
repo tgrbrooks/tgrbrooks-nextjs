@@ -1,12 +1,9 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import DarkLink from '../components/UI/DarkLink'
 import utilStyles from '../styles/utils.module.scss'
-import styles from '../styles/layout.module.scss'
 import PageLayout from '../components/PageLayout'
-import Card from 'react-bootstrap/Card'
+import ListCard from '../components/ListCard'
 import CardDeck from 'react-bootstrap/CardDeck'
-import ListGroup from 'react-bootstrap/ListGroup'
 
 export default function About() {
   return (
@@ -24,22 +21,14 @@ export default function About() {
       </section>
       <br/>
       <CardDeck>
-        <Card className={styles.card}>
-          <Card.Header className={styles.cardHeader}><b>Papers</b></Card.Header>
-          <ListGroup variant="flush">
-            <ListGroup.Item action href="http://etheses.whiterose.ac.uk/28046/" className={styles.linkCardBody}>Selecting Charged Current Muon Neutrino Interactions on Argon with the Short-Baseline Near Detector.<br/><i>Thesis (2020)</i></ListGroup.Item>
-            <ListGroup.Item action href="https://iopscience.iop.org/article/10.1088/1748-0221/15/06/P06033" className={styles.linkCardBody}>Construction of precision wire readout planes for the Short-Baseline Near Detector.<br/><i>Journal of Instrumentation (2020)</i></ListGroup.Item>
-            <ListGroup.Item action href="https://arxiv.org/abs/1804.05941v2" className={styles.linkCardBody}>A Novel Electrical Method to Measure Wire Tensions for Time Projection Chambers.<br/><i>NIM A (2019)</i></ListGroup.Item>
-          </ListGroup>
-        </Card>
-        <Card className={styles.card}>
-          <Card.Header className={styles.cardHeader}><b>Talks</b></Card.Header>
-          <ListGroup variant="flush">
-            <ListGroup.Item className={styles.linkCardBody}>Neutrino-nucleus cross sections at the Short-Baseline Near Detector.<br/><i>HEP Seminar Series: University of Sheffield (2020)</i></ListGroup.Item>
-            <ListGroup.Item action href="https://indico.cern.ch/event/797094/contributions/3367773/" className={styles.linkCardBody}>A preliminary charged-current muon neutrino inclusive selection in SBND.<br/><i>IOP Conference: Imperial College London (2019)</i></ListGroup.Item>
-            <ListGroup.Item action href="https://indico.fnal.gov/event/16384/contributions/37237/" className={styles.linkCardBody}>SBND in 10 minutes.<br/><i>New Perspectives: Fermilab (2018)</i></ListGroup.Item>
-          </ListGroup>
-        </Card>
+        <ListCard title="Papers" items={[
+          {link: "http://etheses.whiterose.ac.uk/28046/", title: "Selecting Charged Current Muon Neutrino Interactions on Argon with the Short-Baseline Near Detector.", extra: "Thesis (2020)"},
+          {link: "https://iopscience.iop.org/article/10.1088/1748-0221/15/06/P06033", title: "Construction of precision wire readout planes for the Short-Baseline Near Detector.", extra: "Journal of Instrumentation (2020)"},
+          {link: "https://arxiv.org/abs/1804.05941v2", title: "A Novel Electrical Method to Measure Wire Tensions for Time Projection Chambers.", extra: "NIM A (2019)"}]} />
+        <ListCard title="Talks" items={[
+          {link: "", title: "Neutrino-nucleus cross sections at the Short-Baseline Near Detector.", extra: "HEP Seminar Series: University of Sheffield (2020)"},
+          {link: "https://indico.cern.ch/event/797094/contributions/3367773/", title: "A preliminary charged-current muon neutrino inclusive selection in SBND.", extra: "IOP Conference: Imperial College London (2019)"},
+          {link: "https://indico.fnal.gov/event/16384/contributions/37237/", title: "SBND in 10 minutes.", extra: "New Perspectives: Fermilab (2018)"}]} />
       </CardDeck>
     </PageLayout>
   )
