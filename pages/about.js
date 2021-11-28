@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import DarkLink from '../components/UI/DarkLink'
 import utilStyles from '../styles/utils.module.scss'
 import styles from '../styles/layout.module.scss'
-import PageLayout from '../components/PageLayout.js'
+import PageLayout from '../components/PageLayout'
 import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 import ListGroup from 'react-bootstrap/ListGroup'
@@ -19,7 +20,7 @@ export default function About() {
         <p>As part of my work I spent time as a visiting research scholar at the Fermi National Accelerator Laboratory, building a 100 ton particle detector and designing algorithms for reconstructing interactions.</p>
         <p>After my PhD I had a brief spell with the WATCHMAN collaboration as a postdoctoral researcher, developing a system of remote nuclear reactor detection for non proliferation.</p>
         <p>I'm currently working as a C++ engineer with Applied Blockchain, specialising in privacy preserving secure enclave technology.</p>
-        <p>You can find out more about my background on my <Link href="/cv"><a className={styles.link}>CV</a></Link> page, and more about things I've done on the <Link href="/projects"><a className={styles.link}>projects</a></Link> and <Link href="/games"><a className={styles.link}>games</a></Link> pages.</p>
+        <p>You can find out more about my background on my <DarkLink link="/cv" name="CV" /> page, and more about things I've done on the <DarkLink link="/projects" name="projects"/> and <DarkLink link="/games" name="games"/> pages.</p>
       </section>
       <br/>
       <CardDeck>
