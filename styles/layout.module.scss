@@ -78,3 +78,14 @@
   .link:hover {
     color: $text-color;
   }
+
+  .darkButton {
+    background-color: $grey-color;
+    color: $grey-color-light;
+    border: 1px $grey-color;
+  }
+  .darkButton:hover {
+    background-color: $grey-color-darkish;
+    color: $text-color;
+    border: 1px $grey-color-darkish;
+  }

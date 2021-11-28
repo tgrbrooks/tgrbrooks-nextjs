@@ -1,6 +1,6 @@
 import Card from 'react-bootstrap/Card'
 import Carousel from 'react-bootstrap/Carousel'
-import Button from 'react-bootstrap/Button'
+import DarkButton from './UI/DarkButton'
 import styles from '../styles/layout.module.scss'
 
 const GameCard = ({ children, title, images, repo, status }) => {
@@ -22,7 +22,7 @@ const GameCard = ({ children, title, images, repo, status }) => {
         <Card.Text>
           {children}
         </Card.Text>
-        <Button className="mt-auto" href={'https://github.com/tgrbrooks/' + repo}>GitHub</Button>
+        <DarkButton link={'https://github.com/tgrbrooks/' + repo} name={"GitHub"} />
       </Card.Body>
       <Card.Footer className={styles.cardFooter}>{status}</Card.Footer>
     </Card>
