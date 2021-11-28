@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import utilStyles from '../styles/utils.module.scss'
+import styles from '../styles/layout.module.scss'
 import PageLayout from '../components/PageLayout.js'
 import Date from '../components/Date.js'
 import { getSortedPostsData } from '../utils/posts.js'
@@ -25,7 +26,7 @@ export default function Blog({ allPostsData }) {
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>
-                <a>{title}</a>
+                <a className={styles.link}>{title}</a>
               </Link>
               <br />
               <small className={utilStyles.lightText}>
