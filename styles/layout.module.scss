@@ -45,14 +45,36 @@
 
   .cardHeader {
     text-align: center;
-    color: $text-color;
+    color: $grey-color-light;
   }
 
   .cardBody {
     background-color: $background-color;
     color: $text-color;
   }
-  .cardBody:hover {
+
+  .linkCardBody {
+    background-color: $background-color;
+    color: $text-color;
+  }
+  .linkCardBody:hover {
     background-color: $header-color;
+    color: $text-color;
+  }
+
+  .gameCard {
+    max-width: 30rem;
+    background-color: $background-color;
+  }
+
+  .cardFooter {
+    background-color: $header-color;
+    color: $grey-color-light;
+  }
+
+  .link {
+    color: $grey-color-light;
+  }
+  .link:hover {
     color: $text-color;
   }

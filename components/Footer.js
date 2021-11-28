@@ -24,7 +24,7 @@ const Footer = () => {
           <div className={[styles.footerCol, styles.footerCol3].join(' ')}>
             <ul className={styles.contactList}>
               <img className={styles.socialIcon} src="/images/icon-linkedin.svg" />
-              <a className={styles.footerLink} href="https://www.linkedin.com/in/tom-brooks-a940a9a7/">tom-brooks-a940a9a7</a>
+              <a className={styles.footerLink} href="https://www.linkedin.com/in/tgrbrooks/">tgrbrooks</a>
             </ul>
           </div>
         </div>

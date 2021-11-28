@@ -12,7 +12,7 @@ const PageLayout = ({ children, home, title, type }) => {
       {!home && (
         <div className={styles.backToHome}>
           <Link href="/">
-            <a>← Back to home</a>
+            <a className={styles.link}>← Back to home</a>
           </Link>
         </div>
       )}

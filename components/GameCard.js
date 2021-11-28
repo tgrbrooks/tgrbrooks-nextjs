@@ -1,6 +1,7 @@
 import Card from 'react-bootstrap/Card'
 import Carousel from 'react-bootstrap/Carousel'
 import Button from 'react-bootstrap/Button'
+import styles from '../styles/layout.module.scss'
 
 const GameCard = ({ children, title, images, repo, status }) => {
   var carouselItems = []
@@ -12,18 +13,18 @@ const GameCard = ({ children, title, images, repo, status }) => {
     />
   </Carousel.Item>))
   return (
-    <Card className="mb-3" style={{ maxWidth: '30rem' }}>
+    <Card className={`${styles.gameCard} mb-3`}>
       <Carousel>
         {carouselItems}
       </Carousel>
-      <Card.Body className="d-flex flex-column">
-        <Card.Title className="text-muted">{title}</Card.Title>
+      <Card.Body className={`d-flex flex-column ${styles.cardBody}`}>
+        <Card.Title className={styles.cardHeader}>{title}</Card.Title>
         <Card.Text>
           {children}
         </Card.Text>
         <Button className="mt-auto" href={'https://github.com/tgrbrooks/' + repo}>GitHub</Button>
       </Card.Body>
-      <Card.Footer className="text-muted">{status}</Card.Footer>
+      <Card.Footer className={styles.cardFooter}>{status}</Card.Footer>
     </Card>
   )
 }
