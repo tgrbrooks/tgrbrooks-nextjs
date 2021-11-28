@@ -38,7 +38,6 @@ const TimelineBox = ({image, handler}) => {
       targets: eventRef.current,
       easing: 'easeInOutSine',
       direction: 'normal',
-      zIndex: 10,
       loop: false,
       autoplay: false,
       // Play in reverse when clicked twice to hide
@@ -49,7 +48,7 @@ const TimelineBox = ({image, handler}) => {
     // Fill the background of the mask
     tempTimeline.add({
       targets: maskRef.current,
-      backgroundColor: "#343a40",
+      backgroundColor: "#FFF",
       opacity: 1,
       duration: 400
     })
