@@ -35,7 +35,7 @@ export default function Projects() {
           <p>Audio, video and accelerometer processing on the Raspberry Pi.</p>
           <p>The ultimate goal is to used trained language and image neural networks to respond to commands and navigate.</p>
         </ProjectCard>
-        <ProjectCard title={"tgrbrooks.github.io"} image={"website.png"} repo={"tgrbrooks.github.io"} status={"Maintained"}>
+        <ProjectCard title={"tom-brooks.com"} image={"website.png"} repo={"tgrbrooks-nextjs"} status={"Maintained"}>
           <p>This very website!</p>
           <p>A page for storing all things useful and testing out new web development techniques.</p>
         </ProjectCard>

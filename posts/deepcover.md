@@ -1,14 +1,14 @@
 ---
 title:  "Trying to Write Cover Letters with NLP"
 date: '2020-09-06'
-tag: 'Projects'
+tag: 'Project'
 ---
 
 # Overview
 
 I wanted to learn more about natural language processing because it's a fascinating topic that's recently made huge leaps by harnessing the recent progress in deep learning techniques. One of the coolest things you can do is train a network to generate text character by character, and the results are often remarkably [coherent](http://karpathy.github.io/2015/05/21/rnn-effectiveness/).
 
-I find the best way to learn is by doing, and as I was just getting deep into the job application slog my idea was to get the network to generate cover letters for me. My thinking was that most cover letters are pretty generic with a lot of the same sweeping phrases used for all kinds of work and so it wouldn't be too hard to train a network to come up with something more or less comprehensible. You can read more about the details and why I was wrong below or you can skip straight to the [results]({% link cover.markdown %}).
+I find the best way to learn is by doing, and as I was just getting deep into the job application slog my idea was to get the network to generate cover letters for me. My thinking was that most cover letters are pretty generic with a lot of the same sweeping phrases used for all kinds of work and so it wouldn't be too hard to train a network to come up with something more or less comprehensible. You can read more about the details and why I was wrong below or you can skip straight to the [results](/cover).
 
 The code for the data generation and training can be found in this [Github repository](https://github.com/tgrbrooks/DeepCover) and the web deployment code is part of the repository for this [website](https://github.com/tgrbrooks/tgrbrooks.github.io).
 
