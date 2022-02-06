@@ -4,15 +4,20 @@ date: '2020-05-07'
 tag: 'TIL'
 ---
 
-* Create a branch with the tag
+
+In certain situations where you may have ``git push``ed too early and left out some important files you may want to modify an existing tag. This shouldn't be used when a version has already been deployed, in this case, incrementing the patch version is always preferable for semantic versioning.
+
+In order to modify the files in an existing tag:
+
+* Create a branch from the tag
 
 ```bash
 git branch {tagname}-branch {tagname}
 git checkout {tagname}-branch
 ```
 
-* Change files
-* Include the fix manually if it's just a change
+* Change or update any files
+* Add the updated files and commit the changes
 
 ```bash
 git add < files >
