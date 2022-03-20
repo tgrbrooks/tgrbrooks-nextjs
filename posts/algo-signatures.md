@@ -15,6 +15,7 @@ The `ed25519verify` opcode can be used in both stateless and stateful contracts 
 
 When the opcode is called the data is transformed before the signature is verified, hence this transformation must also be done when signing the data:
   * "ProgData" + SHA512-256(compiled program bytes) + data
+
 For a stateless contract the contract address is derived from the program bytes. This is not the case for a stateful contract, so don't try to work out the hash from the application address. Decoding an Algorand address is just converting to bytes and stripping off the last 4 bytes. Calculate the hash of program bytes with
 
 ```bash
