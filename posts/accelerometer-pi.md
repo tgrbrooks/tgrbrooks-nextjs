@@ -22,7 +22,7 @@ As Earth's gravity results in a constant upwards acceleration for any body at re
 sudo raspi-config
 ```
 
-** Under `5. Interfacing Options` make sure I2C is enabled
+* Under `5. Interfacing Options` make sure I2C is enabled
 * Make sure the correct modules are included in the module file `/etc/modules`, it should contain the lines:
 
 ```bash
