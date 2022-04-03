@@ -21,7 +21,7 @@ The standard way to use `sgx-gdb` is to run the command line tool and interact w
   "request": "launch",
   "target": "./path/to/executable",
   "cwd": "${workspaceRoot}/build-directory",
-  "valuesFormatting": "parseText:",
+  "valuesFormatting": "parseText",
   "gdbpath": "sgx-gdb"
 }
 ```
