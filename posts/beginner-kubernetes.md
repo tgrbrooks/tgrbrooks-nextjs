@@ -1,6 +1,6 @@
 ---
 title: 'Kubernetes commands for beginners'
-date: '2022-04-10
+date: '2022-04-10'
 tag: 'TIL'
 ---
 
