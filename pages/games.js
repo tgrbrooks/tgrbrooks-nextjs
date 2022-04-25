@@ -25,6 +25,12 @@ export default function Games() {
           <Alert variant='warning'>WARNING: I made this as a Valentine's day present for my partner so it's a bit soppy. (Play at your own risk)</Alert>
           <DarkButton link="/AdventureGame/index.html" name="Play" />
         </GameCard>
+        <GameCard title={"Cheese Quest"} images={["cheesebag1.png", "cheesebag2.png"]} repo={"CheeseQuest"} status={"Maintained"}>
+          <p>I made this game as a christmas present for a friend using the same tech stack as Valentine's Adventure.</p>
+          <p>I thought it would be super quick as I already knew what I was doing and wasn't putting a lot of effort into creating the assets, but it turned out to be a big time suck as I ended up experimenting with making it mobile friendly.</p>
+          <p>It's a very dumb concept and much shorter than Valentine's Adventure, but I made up for that by making it almost unenjoyably hard.</p>
+          <DarkButton link="https://cheese-bag.com" name="Play" />
+        </GameCard>
       </CardDeck>
     </PageLayout>
   )
